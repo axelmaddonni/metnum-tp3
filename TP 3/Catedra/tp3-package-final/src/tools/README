@@ -1,0 +1,9 @@
+Se incluyen dos funciones:
+
+- videoToTextfile(videoFilename, textFilename, salto)
+La cual toma un video, un nombre con el que se guardará el video convertido en texto y un número (salto) que indica si se saltean frames. Esto puede servir para analizar cuán bueno es un método donde se sacarán algunos cuadros para generarlos. En esos casos, salto será mayor a 1. Si es 1 entonces usa todos los cuadros. En textFilename dejará un archivo de texto con el formato de entrada que debe tomar la implementación, o sea cantidad de cuadros, en la siguiente línea alto y ancho de cada cuadro (son los mismos para todos los cuadros), en la siguiente el framerate y luego los valores de los píxeles de cada cuadro uno después del otro de manera que cada fila es una línea de la imagen. El video colocado como entrada es automáticamente pasado a escala de grises.
+Ejemplo: videoToTextfile('../../videos/funnybaby.avi','../../videos/funnybabyTexto',1)
+
+- textfileToVideo(textFilename, videoFilename)
+La cual transforma un archivo de texto con el formato descripto en el TP (cantidad de frames, tamaño de los mismos, framerate y luego los valores de los cuadros) a un video.
+Ejemplo: textfileToVideo('../../videos/funnybabyTexto','../../videos/fb.avi')

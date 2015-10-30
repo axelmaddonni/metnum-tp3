@@ -1,0 +1,10 @@
+Para utilizar los scripts en python, instalar python 2.7. Para ejecutar los scripts, desde una consolo ejecutar:
+
+python metnum.py opcion
+
+donde opcion puede ser:
+
+compile: Compila todos los *.cpp que haya en el directorio.
+link: Genera el ejecutable en base a los *.o generados previamente.
+build: compile + link
+clean: borra los *.o y el ejecutable.

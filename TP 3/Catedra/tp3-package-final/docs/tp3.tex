@@ -1,0 +1,136 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{a4wide,amsmath,amsfonts,graphicx,subcaption,tikz}
+\usepackage[utf8]{inputenc} % para poder usar tildes en archivos UTF-8
+\usepackage[spanish]{babel}
+%\usepackage[ruled,vlined]{algorithm2e}
+
+%\parindent = 0 pt
+\parskip = 5 pt
+
+\newcounter{row}
+\newcounter{col}
+
+\newcommand\setrow[3]{
+	\setcounter{col}{1}
+	\foreach \n in {#1, #2, #3} {
+	\edef\x{\value{col} - 0.5}
+	\edef\y{3.5 - \value{row}}
+	\node[anchor=center] at (\x, \y) {\n};
+	\stepcounter{col}
+	}
+	\stepcounter{row}
+}
+
+\newcommand\setrowaux[7]{
+	\setcounter{col}{1}
+	\foreach \n in {#1, #2, #3, #4, #5, #6, #7} {
+	\edef\x{\value{col} - 0.5}
+	\edef\y{7.5 - \value{row}}
+	\node[anchor=center] at (\x, \y) {\n};
+	\stepcounter{col}
+	}
+	\stepcounter{row}
+}
+
+\newcommand{\real}{\mathbb{R}}
+
+\begin{document}
+\begin{center}
+\begin{tabular}{r|cr}
+ \begin{tabular}{c}
+{\large\bf\textsf{\ M\'etodos Num\'ericos\ }}\\ 
+Segundo Cuatrimestre 2015\\
+{\bf Trabajo Pr\'actico 3}\\
+\end{tabular} &
+\begin{tabular}{@{} p{1.6cm} @{}}
+\includegraphics[width=1.6cm]{logodpt.jpg}
+\end{tabular} &
+\begin{tabular}{l @{}}
+ \emph{Departamento de Computaci\'on} \\
+ \emph{Facultad de Ciencias Exactas y Naturales} \\
+ \emph{Universidad de Buenos Aires} \\
+\end{tabular} 
+\end{tabular}
+\vskip 10pt
+\textbf{\Large \emph{Un juego de niños}}\\
+\vspace{0.5cm}
+\end{center}
+
+\vskip 10pt
+\hrule
+\vskip 5pt
+
+{\bf\noindent Introducci\'on}
+
+¿Quién nunca ha visto un video gracioso de bebés? El éxito de esas producciones audiovisuales ha sido tal que el sitio youborn.com es uno de los más visitados diariamente. Los dueños de este gran sitio, encargado de la importantísima tarea de llevar videos graciosos con bebés a todo el mundo, nos ha pedido que mejoremos su sistema de reproducción de videos.
+
+Su objetivo es tener videos en cámara lenta (ya que todos deseamos tener lujo de detalle en las expresiones de los chiquilines en esos videos) pero teniendo en cuenta que las conexiones a internet no necesariamente son capaces de transportar la gran cantidad de datos que implica un video en \textit{slow motion}. La gran idea es minimizar la dependencia de la velocidad de conexi\'on y s\'olo enviar el video original. Una vez que el usuario recibe esos datos, todo el trabajo de la cámara lenta puede hacerse de modo offline del lado del cliente, optimizando los tiempos de transferencia. Para tal fin utilizaremos técnicas de interpolación, buscando generar, entre cada par de cuadros del video original, otros ficticios que nos ayuden a generar un efecto de slow motion.
+
+
+\vskip 5pt
+
+{\bf\noindent Definici\'on del problema y metodolog\'ia}
+
+Para resolver el problema planteado en la secci\'on anterior, se considera el siguiente contexto. Un video está compuesto por cuadros (denominados también \textit{frames} en inglés) donde cada uno de ellos es una imagen. Al reproducirse rápidamente una después de la otra percibimos el efecto de movimiento a partir de tener un ``buen frame rate'', es decir una alta cantidad de cuadros por segundo o fps (frames per second). Por lo general las tomas de cámara lenta se generan con cámaras que permiten tomar altísimos números de cuadros por segundo, unos 100 o m\'as en comparaci\'on con entre 24 y 30 que se utilizan normalmente. 
+
+En el caso del trabajo práctico crearemos una cámara lenta sobre un video grabado normalmente. Para ello colocaremos más cuadros entre cada par de cuadros consecutivos del video original de forma que representen la información que debería haber en la transición y reproduciremos el resultado a la misma velocidad que el original. Las im\'agenes correspondientes a cada cuadro est\'an conformadas por p\'ixeles. En particular, en este trabajo utilizaremos im\'agenes en escala de grises para disminuir los costos en tiempo necesarios para procesar los datos y simplificar la implementaci\'on; sin embargo, la misma idea puede ser utilizada para videos en color. 
+
+El objetivo del trabajo es generar, para cada posici\'on $(i,j)$, los valores de los cuadros agregados en funci\'on de los cuadros conocidos. Lo que haremos ser\'a interpolar en el tiempo y para ello, se propone considerar al menos los siguientes tres m\'etodos de interpolaci\'on:
+
+\begin{enumerate}
+\item \emph{Vecino m\'as cercano:} Consiste en rellenar el nuevo cuadro replicando los valores de los p\'ixeles del cuadro original que se encuentra más cerca. \label{item:nn}
+\item \emph{Interpolaci\'on lineal:} Consiste en rellenar los p\'ixeles utilizando interpolaciones lineales entre p\'ixeles de cuadros originales consecutivos. \label{item:lineal}
+\item \emph{Interpolaci\'on por Splines:} Simliar al anterior, pero considerando interpolar utilizando splines y tomando una cantidad de cuadros mayor. Una alternativa a considerar es tomar la informaci\'on de bloques de un tama\~no fijo (por ejemplo, 4 cuadros, 8 cuadros, etc.), con el tama\~no de bloque a ser determinado experimentalmente. \label{item:spline}
+\end{enumerate}
+
+
+Cada m\'etodo tiene sus propias caracter\'isticas, ventajas y desventajas particulares. Para realizar un an\'alisis cuantitativo, llamamos $F$ al frame del video real (ideal) que deber\'iamos obtener con nuestro algoritmo, y sea $\bar{F}$ al frame del video efectivamente construido. Consideramos entonces dos medidas, directamente relacionadas entre ellas, como el \emph{Error Cuadr\'atico Medio} (ECM) y \emph{Peak to Signal Noise Ratio} (PSNR), denotados por $\texttt{ECM}(F,\bar{F})$ y $\texttt{PSNR}(F,\bar{F})$, respectivamente, y definidos como:
+\begin{equation}
+\texttt{ECM}(F,\bar{F}) = \frac{1}{mn}\sum_{i=1}^m\sum_{j = 1}^n |F_{k_{ij}} - \bar{F}_{k_{ij}}|^2 \label{eq:ecm}
+\end{equation}
+\noindent y
+\begin{equation}
+\texttt{PSNR}(F,\bar{F}) = 10 \log_{10}\bigg(\frac{255^2}{\texttt{ECM}(F,\bar{F})}\bigg). \label{eq:psnr}
+\end{equation}
+
+Donde $m$ es la cantidad de filas de p\'ixeles en cada imagen y $n$ es la cantidad de columnas. Esta métrica puede extenderse para todo el video.
+
+En conjunto con los valores obtenidos para estas m\'etricas, es importante además realizar un an\'alisis del tiempo de ejecuci\'on de cada m\'etodo y los denominados \emph{artifacts} que produce cada uno de ellos. Se denominan \emph{artifacts} a aquellos errores visuales resultantes de la aplicaci\'on de un m\'etodo o t\'ecnica. La b\'usqueda de este tipo de errores complementa el estudio cuantitativo mencionado anteriormente incorporando un an\'alisis cualitativo (y eventualmente subjetivo) sobre las im\'agenes generadas.
+
+\vskip 5pt
+
+{\bf\noindent Enunciado}
+
+Se pide implementar un programa en \verb-C- o \verb-C++- que implemente como m\'inimo los tres m\'etodos mencionados anteriormente y que dado un video y una cantidad de cuadros a agregar aplique estas t\'ecnicas para generar un video de cámara lenta. A su vez, es necesario explicar en detalle c\'omo se utilizan y aplican los m\'etodos descriptos en \ref{item:nn}, \ref{item:lineal} y \ref{item:spline} (y todos aquellos otros m\'etodos que decidan considerar opcionalmente) en el contexto propuesto. Los grupos deben a su vez plantear, describir y realizar de forma adecuada los experimentos que consideren pertinentes para la evaluaci\'on de los m\'etodos, justificando debidamente las decisiones tomadas y analizando en detalle los resultados obtenidos as\'i como tambi\'en plantear qu\'e pruebas realizaron para convencerse de que los m\'etodos funcionan correctamente.
+
+
+{\bf\noindent Programa y formato de entrada}
+
+Se deberán entregar los archivos fuentes que contengan la resolución del trabajo práctico. El ejecutable tomará cuatro parámetros por línea de comando que serán el archivo de entrada, el archivo de salida, el método a ejecutar (0 para vecinos más cercanos, 1 para lineal, 2 para splines y otros números si consideran más métodos) y la cantidad de cuadros a agregar entre cada par del video original.
+
+Tanto el archivo de entrada como el de salida tendrán la siguiente estructura:
+
+\begin{itemize}
+  \item En la primera línea está la cantidad de cuadros que tiene el video (\verb|c|).
+  \item En la segunda línea está el tamaño del cuadro donde el primer número es la cantidad de filas y el segundo es la cantidad de columnas (\verb|height width|).
+  \item En la tercera línea está el framerate del video (\verb|f|).
+  \item A partir de allí siguen las imágenes del video una después de la otra en forma de matriz. Las primeras \verb|height| l\'ineas son las filas de la primera imagen donde cada una tiene \verb|width| n\'umeros correspondientes a los valores de cada píxel en esa fila. Luego siguen las filas de la siguiente imagen y as\'i sucesivamente.
+\end{itemize}
+
+Además se presentan herramientas en Matlab para transformar videos (la herramienta fue probada con la extensión .avi pero es posible que funcione para otras) en archivos de entrada para el enunciado y archivos de salida en videos para poder observar el resultado visualmente. También se recomienda leer el archivo de README sobre la utilización.
+
+
+\vskip 0.5 cm
+\hrule
+\vskip 0.2 cm
+
+{\bf Sobre la entrega}
+\begin{itemize}
+\item \textsc{Formato electr\'onico:} Martes 10 de Noviembre de 2015, {\bf{\underline{hasta las 23:59}}}, enviando el trabajo
+(\texttt{informe} + \texttt{c\'odigo}) a \texttt{metnum.lab@gmail.com}. El \texttt{asunto} del email debe comenzar con el texto \verb|[TP3]| seguido
+de la lista de apellidos de los integrantes del grupo. Ejemplo: \texttt{[TP3] Artuso, Belloli, Landini}
+\item \textsc{Formato f\'isico:} Mi\'ercoles 11 de Noviembre de 2015, en la clase pr\'actica.
+\end{itemize}
+
+
+\end{document}
