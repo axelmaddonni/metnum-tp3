@@ -7,6 +7,7 @@
 #include <vector>
 #include <memory>
 
+using std::cout;
 using std::ofstream;
 using std::ifstream;
 using std::atoi;
@@ -44,7 +45,7 @@ struct Parametros
     const int framerate; //double?
 };
 
-void methodDispatch(Parametros&);
+void methodDispatch(int, char **);
 void vecinoMasCercano(Parametros&);
 void lineal(Parametros&);
 void splines(Parametros&);
