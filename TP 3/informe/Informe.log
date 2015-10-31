@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.3.31)  31 OCT 2015 17:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.3.31)  31 OCT 2015 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -773,25 +773,30 @@ LaTeX Info: Redefining \% on input line 1.
 \tf@toc=\write4
 \openout4 = `Informe.toc'.
 
- [2] (./Secciones/introduccion.tex)
+ [2] (./Secciones/introduccion.tex
+(./Secciones/introduccion/IntroVecinoMasCercano.tex)
+(./Secciones/introduccion/IntroInterpolacionLineal.tex)
+(./Secciones/introduccion/IntroInterpolacionSplines.tex))
 LaTeX Info: Redefining \. on input line 73.
 LaTeX Info: Redefining \% on input line 73.
-
-[3] (./Secciones/desarrollo.tex)
+ [3]
+(./Secciones/desarrollo.tex (./Secciones/desarrollo/DesVecinoMasCercano.tex)
+(./Secciones/desarrollo/DesInterpolacionLineal.tex)
+(./Secciones/desarrollo/DesInterpolacionSplines.tex))
 LaTeX Info: Redefining \. on input line 79.
 LaTeX Info: Redefining \% on input line 79.
- [4] (./Secciones/resultados.tex)
+ [4]
+(./Secciones/resultados.tex)
 LaTeX Info: Redefining \. on input line 85.
 LaTeX Info: Redefining \% on input line 85.
- [5]
-(./Secciones/conclusiones.tex)
+ [5] (./Secciones/conclusiones.tex)
 LaTeX Info: Redefining \. on input line 91.
 LaTeX Info: Redefining \% on input line 91.
- [6] (./Secciones/apendices.tex)
+ [6]
+(./Secciones/apendices.tex)
 LaTeX Info: Redefining \. on input line 97.
 LaTeX Info: Redefining \% on input line 97.
- [7]
-(./Secciones/referencias.tex
+ [7] (./Secciones/referencias.tex
 
 LaTeX Warning: Empty `thebibliography' environment on input line 10.
 
@@ -803,13 +808,13 @@ LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 6906 strings out of 493304
- 94739 string characters out of 6139871
+ 6926 strings out of 493304
+ 95509 string characters out of 6139871
  182233 words of memory out of 5000000
  10196 multiletter control sequences out of 15000+600000
  7931 words of font info for 31 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,12n,43p,283b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,43p,283b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
@@ -818,7 +823,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Informe.pdf (8 pages, 464096 bytes).
+Output written on Informe.pdf (8 pages, 464482 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  44 compressed objects within 1 object stream
