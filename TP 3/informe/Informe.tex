@@ -1,0 +1,103 @@
+\documentclass[10pt, a4paper,english,spanish]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\parindent = 0 pt
+\usepackage{geometry}
+\usepackage{xr}
+\usepackage{placeins}
+\usepackage{vmargin}
+\usepackage{tabulary}
+\usepackage{multicol}
+\usepackage{algpseudocode}
+\setpapersize{A4}
+\setmargins{2.5cm}       % margen izquierdo
+{1.5cm}                  % margen superior
+{16.5cm}                 % anchura del texto
+{23.42cm}                % altura del texto
+{2cm}                    % altura de los encabezados
+{1cm}                    % espacio entre el texto y los encabezados
+{0pt}                    % altura del pie de página
+{1cm} 
+\usepackage{subfigure}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+%\usepackage{verbatim}
+%\usepackage{color}
+\usepackage{listings}
+\newtheorem{proposition}{Proposici\'on}
+\setlength{\parindent}{0.5cm}
+
+
+\input{codesnippet}
+\input{page.layout}
+% \setcounter{secnumdepth}{2}
+\usepackage{caratula}
+\usepackage{url}
+
+\begin{document}
+
+\thispagestyle{empty}
+\materia{Métodos Numéricos}
+\submateria{Segundo Cuatrimestre de 2015}
+\titulo{Trabajo Práctico III}
+\subtitulo{}
+\integrante{Alvarez, Lautaro Leonel}{268/14}{lautarolalvarez@gmail.com}
+\integrante{Maddonni, Axel Ezequiel}{200/14}{axel.maddonni@gmail.com}
+\integrante{Thibeault, Gabriel Eric}{114/13}{gabriel.eric.thibeault@gmail.com}
+\claves{}
+\intro{}
+
+\maketitle
+\newpage
+
+\thispagestyle{empty}
+\vfill
+
+\thispagestyle{empty}
+\vspace{3cm}
+\tableofcontents
+\newpage
+
+%\normalsize
+\newpage
+
+\section{Introducci\'on Te\'orica}
+
+\input{Secciones/introduccion}
+ 
+\newpage
+ 
+\section{Desarrollo}
+
+\input{Secciones/desarrollo}
+ 
+\newpage
+
+\section{Resultados y Discusión}
+
+\input{Secciones/resultados}
+ 
+\newpage
+
+\section{Conclusiones}
+
+\input{Secciones/conclusiones}
+ 
+\newpage
+
+\section{Ap\'endices}
+
+\input{Secciones/apendices}
+ 
+\newpage
+
+\section{Referencias}
+
+\input{Secciones/referencias}
+
+\end{document}

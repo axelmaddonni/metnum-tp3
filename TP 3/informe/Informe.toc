@@ -1,0 +1,17 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\'on Te\'orica}{3}
+\contentsline {subsection}{\numberline {1.1}Vecino m\IeC {\'a}s cercano}{3}
+\contentsline {subsection}{\numberline {1.2}Interpolaci\IeC {\'o}n Lineal}{3}
+\contentsline {subsection}{\numberline {1.3}Interpolaci\IeC {\'o}n por Splines}{3}
+\contentsline {section}{\numberline {2}Desarrollo}{4}
+\contentsline {subsection}{\numberline {2.1}Vecino m\IeC {\'a}s cercano}{4}
+\contentsline {subsection}{\numberline {2.2}Interpolaci\IeC {\'o}n Lineal}{4}
+\contentsline {subsection}{\numberline {2.3}Interpolaci\IeC {\'o}n por Splines}{4}
+\contentsline {section}{\numberline {3}Resultados y Discusi\IeC {\'o}n}{5}
+\contentsline {subsection}{\numberline {3.1}Tiempo de Convergencia}{5}
+\contentsline {subsection}{\numberline {3.2}An\IeC {\'a}lisis Cuantitativo}{5}
+\contentsline {subsection}{\numberline {3.3}An\IeC {\'a}lisis Cualitativo}{5}
+\contentsline {section}{\numberline {4}Conclusiones}{6}
+\contentsline {section}{\numberline {5}Ap\'endices}{7}
+\contentsline {subsection}{\numberline {5.1}Ap\IeC {\'e}ndice A}{7}
+\contentsline {section}{\numberline {6}Referencias}{8}
