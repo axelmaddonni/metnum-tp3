@@ -1,0 +1,9 @@
+\par La interpolaci\'on lineal se basa en encontrar la recta que une dos puntos, y evaluarla en los puntos que se desea interpolar.
+\par Considerando puntos de la forma $(x, f(x))$, debemos asignarle a los p\'ixeles valores de $x$ para poder interpolarlos ($f(x)$ son los valores de los puntos en la recta).
+Los valores espec\'ificos de $x$ son irrelevantes, mientras sean equidistantes; en nuestro caso, para el i-\'esimo frame intermedio, $x = i$. 
+A su vez, para los frames que usamos para interpolar (que pertenecen al video original), $x = 0$ para el primero y $x = cantidad\ de\ frames\ intermedios + 1$ para el segundo.
+\newline La ecuaci\'on que utilizamos para la interpolaci\'on lineal es la siguiente:
+\begin{equation}
+f(x) = (y_2 - y_1)/(x_2 - x_1) * x + y_1
+\end{equation}
+\par Con $x_1, x_2$ los valores en $x$ de los dos frames a partir de los cuales estamos interpolando, e $y_1 = f(x_1)$, $y_2 = f(x_2)$.
