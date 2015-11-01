@@ -2,31 +2,31 @@
 
 void methodDispatch(int argc, char **argv) 
 {
-    switch (params.metodo)
+    switch (atoi(argv[3]))
     {
         case 0:
         {
-			Parametros params(argc, argv);
+            Parametros params(argc, argv);
             vecinoMasCercano(params);
             break;
         }
         case 1:
         {
-			Parametros params(argc, argv);
+            Parametros params(argc, argv);
             lineal(params);
             break;
         }
         case 2:
         {
-			Parametros params(argc, argv);
+            Parametros params(argc, argv);
             splines(params);
             break;
         }
-		case default:
-		{
-			cout << "Ese no es un metodo soportado.\n";
-			break;
-		}
+        default:
+        {
+            cout << "Ese no es un metodo soportado.\n";
+            break;
+        }
     }
 }
 
