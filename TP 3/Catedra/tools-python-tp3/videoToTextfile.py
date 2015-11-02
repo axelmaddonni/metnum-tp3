@@ -1,11 +1,12 @@
 import numpy as np
 import cv2
+import sys
 
 #########################
 # Parametros de entrada.#
 #########################
-videoFilename = 'funnybaby.avi'
-textFilename = 'funnybaby.txt'
+videoFilename = sys.argv[1]
+textFilename = sys.argv[2]
 salto = 1 
 
 # Abrimos archivo de video. 
