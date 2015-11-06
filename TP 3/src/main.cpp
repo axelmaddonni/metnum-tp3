@@ -10,7 +10,6 @@ int main (int argc, char **argv)
         cout << "Modo de uso: ./ejecutable archivoDeEntrada archivoDeSalida metodoAEjecutar cantidadDeFramesIntermedios\n";
         return 0;
     }
-    Parametros params(argc, argv); 
-    methodDispatch(params);
+    methodDispatch(argc, argv);
     return 0;
 }

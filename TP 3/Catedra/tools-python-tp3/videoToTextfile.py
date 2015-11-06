@@ -1,11 +1,12 @@
 import numpy as np
 import cv2
+import sys
 
 #########################
 # Parametros de entrada.#
 #########################
-videoFilename = 'funnybaby.avi'
-textFilename = 'funnybaby.txt'
+videoFilename = sys.argv[1]
+textFilename = sys.argv[2]
 salto = 1 
 
 # Abrimos archivo de video. 
@@ -27,7 +28,7 @@ print '   Width:\t' + str(width)
 # Guardamos informacion general en el archivo de salida.
 f = open(textFilename,'w')
 f.write(str(int(nFrames)) + '\n')
-f.write(str(int(height)) + ',' + str(int(width)) + '\n')
+f.write(str(int(height)) + ' ' + str(int(width)) + '\n')
 f.write(str(int(frameRate)) + '\n')
 
 # Bajamos al archivo los frames que nos interesan.
@@ -40,7 +41,7 @@ for k in xrange(0,int(nFrames),salto):
 
 	for i in range(0,int(video.get(4))):
 		for j in range(0,int(video.get(3))-1):
-			f.write(str(grayFrame[i][j]) + ',')
+			f.write(str(grayFrame[i][j]) + ' ')
 		f.write(str(grayFrame[i][int(video.get(3)-1)]))
 		f.write('\n')
 
