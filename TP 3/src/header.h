@@ -29,7 +29,7 @@ struct Parametros
             framerate(inputLambda(input, 0))
             {}
 
-    ~Parametros()
+    virtual ~Parametros()
     { 
         input.close();
         output.close(); 
@@ -42,13 +42,25 @@ struct Parametros
     const int frames;
     const int height;
     const int width;
-    const int framerate; //double?
+    const double framerate;
+};
+
+struct ParametrosConNoDeBloques : public Parametros
+{
+    ParametrosConNoDeBloques (int argc, char **argv)
+		:	Parametros(argc, argv),
+			numeroDeBloques(atoi(argv[5]))
+			{}
+	
+	const int numeroDeBloques;
 };
 
 void methodDispatch(int, char **);
 void vecinoMasCercano(Parametros&);
 void lineal(Parametros&);
 void splines(Parametros&);
+void splinesConNoDeBloques(ParametrosConNoDeBloques&);
+
 
 void imprimirFrame (ofstream &output, const vector<vector<int>> &f, const int height, const int width);
 void imprimirNframes (ofstream &output, const vector<vector<int>> &f, const int height, const int width, const int n);

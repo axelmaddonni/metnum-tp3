@@ -22,6 +22,20 @@ void methodDispatch(int argc, char **argv)
             splines(params);
             break;
         }
+		case 3:
+		{
+			if (argc < 6) 
+			{
+				cout << "Falta el argumento de numero de bloques\n";
+				exit(0);
+			}
+			else 
+			{
+				ParametrosConNoDeBloques params(argc, argv);
+				splinesConNoDeBloques(params);
+				break;
+			}
+		}
         default:
         {
             cout << "Ese no es un metodo soportado.\n";
@@ -29,6 +43,8 @@ void methodDispatch(int argc, char **argv)
         }
     }
 }
+
+void splinesConNoDeBloques(ParametrosConNoDeBloques&) {}
 
 void imprimirFrame (ofstream &output, const vector<vector<int>> &f, const int height, const int width)
 {
