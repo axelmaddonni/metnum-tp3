@@ -45,10 +45,13 @@ void eliminarFrames (Parametros &params){
 			// tiro el frame
 			for (i=0; i < params.height; i++){
 				//ignoro la linea
-				params.input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				//params.input.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				for (j=0; j < params.width; j++){
+					params.input >> (*frame)[i][j];
+					}
+				}
 			}
-		}
-
+		
 		k++;
 
 	}

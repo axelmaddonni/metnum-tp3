@@ -4,17 +4,18 @@
 
 using std::endl;
 using std::vector;
+using std::move;
 
 void splinesPorBloques(ParametrosConBloques &params) {
 	params.output << (params.frames - 1) * params.framesIntermedios + params.frames << endl;
 	params.output << params.height << " " << params.width << endl;
 	params.output << params.framerate << endl;
 
-	vector<vector<vector<int>>> Frames(params.tamBloque, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
+	vector<vector<vector<int>>> Frames((params.tamBloque*2), vector<vector<int>>(params.height, vector<int>(params.width, 0)));
 	
 
 	//vector de vectores de los resultados (la derecha la igualdad de las ecuaciones de C)
-	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>(params.tamBloque, 1)));
+	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>((params.tamBloque*2), 1)));
 
 	double aux;
 
@@ -24,19 +25,25 @@ void splinesPorBloques(ParametrosConBloques &params) {
 	int ultimo_indice = 0;
 	double B;
 
+	//cargo primer frame
+	for (int i = 0; i < params.height; i++) {
+		for (int j = 0; j < params.width; j++) {
+			//guarda las imagenes del bloque actual
+			params.input >> Frames[0][i][j];
+		}
+	}	
+
 	//mientras no llega al final de los bloques
 	while (fin_bloque < params.frames -1) {
 		//calcula el fin de bloques
-		if (indice + params.tamBloque >= params.frames ) {
+		if (indice + (params.tamBloque * 2) > params.frames) {
 			fin_bloque = params.frames - 1;
-		} else if (indice + (params.tamBloque * 2) >= params.frames ) {
-			fin_bloque = indice + round( (params.frames - indice) / 2 );
 		} else {
 			fin_bloque = indice + params.tamBloque - 1;
 		}
 		
 
-		for (int k = 0; k <= fin_bloque - indice; k++) {
+		for (int k = 1; k <= fin_bloque - indice; k++) {
 			for (int i = 0; i < params.height; i++) {
 				for (int j = 0; j < params.width; j++) {
 					//guarda las imagenes del bloque actual
@@ -51,7 +58,7 @@ void splinesPorBloques(ParametrosConBloques &params) {
 
 
 		//-----matriz de Cs------
-		vector<vector<double>> M_C (params.tamBloque, vector<double>(params.tamBloque, 0));
+		vector<vector<double>> M_C ((params.tamBloque*2), vector<double>((params.tamBloque*2), 0));
 
 
 		//Matriz de Cs
@@ -90,9 +97,9 @@ void splinesPorBloques(ParametrosConBloques &params) {
 
 
 		//---En M_sal vamos a guardar los valores de los frames intermedios que vamos sacando
-		vector<vector<vector<int>>> M_sal (params.framesIntermedios * params.tamBloque, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
-		vector<double> C(params.tamBloque, 0);
-		vector<double> D(params.tamBloque, 0);
+		vector<vector<vector<int>>> M_sal (params.framesIntermedios * (params.tamBloque*2), vector<vector<int>>(params.height, vector<int>(params.width, 0)));
+		vector<double> C((params.tamBloque*2), 0);
+		vector<double> D((params.tamBloque*2), 0);
 
 		for (int i = 0; i < params.height; i++) {
 			for (int j = 0; j < params.width; j++) {
@@ -116,7 +123,10 @@ void splinesPorBloques(ParametrosConBloques &params) {
 						//---aux = (x - x_i) //distancia entre el x_i y el x del nuevo frame
 						int aux = f + 1;
 						//---Aplicamos la función al x del nuevo frame
-						M_sal[(k * params.framesIntermedios) + f][i][j] = round(Frames[k][i][j] + B * aux + C[k] * pow(aux, 2) + D[k] * pow(aux, 3));
+						int valor = round(Frames[k][i][j] + B * aux + C[k] * pow(aux, 2) + D[k] * pow(aux, 3));
+						if (valor < 0) valor = 0;
+						if (valor > 255) valor = 255;
+						M_sal[(k * params.framesIntermedios) + f][i][j] = valor;
 					}
 
 				}
@@ -135,11 +145,22 @@ void splinesPorBloques(ParametrosConBloques &params) {
 			}
 		}
 
-
-
 		//recalcula el indice
 		ultimo_indice = fin_bloque - indice;
+
+		//El ultimo frame del bloque es el primero del siguiente
+
+		for (int i = 0; i < params.height; i++) {
+			for (int j = 0; j < params.width; j++) {
+				Frames[0][i][j] = Frames[ultimo_indice][i][j]; 
+			}
+		}	
+		
+		//Frames[0] = move(Frames[fin_bloque - indice]);
+
 		indice = fin_bloque;
+
+
 	}
 	//imprimimos el último
 	imprimirFrame(params.output, Frames[ultimo_indice], params.height, params.width);
