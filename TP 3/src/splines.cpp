@@ -5,16 +5,16 @@
 using std::endl;
 using std::vector;
 
-void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
+void splinesPorBloques(ParametrosConBloques &params) {
 	params.output << (params.frames - 1) * params.framesIntermedios + params.frames << endl;
 	params.output << params.height << " " << params.width << endl;
 	params.output << params.framerate << endl;
 
-	vector<vector<vector<int>>> Frames(params.numeroDeBloques, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
+	vector<vector<vector<int>>> Frames(params.tamBloque, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
 	
 
 	//vector de vectores de los resultados (la derecha la igualdad de las ecuaciones de C)
-	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>(params.numeroDeBloques, 1)));
+	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>(params.tamBloque, 1)));
 
 	double aux;
 
@@ -27,12 +27,12 @@ void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
 	//mientras no llega al final de los bloques
 	while (fin_bloque < params.frames -1) {
 		//calcula el fin de bloques
-		if (indice + params.numeroDeBloques >= params.frames ) {
+		if (indice + params.tamBloque >= params.frames ) {
 			fin_bloque = params.frames - 1;
-		} else if (indice + (params.numeroDeBloques * 2) >= params.frames ) {
+		} else if (indice + (params.tamBloque * 2) >= params.frames ) {
 			fin_bloque = indice + round( (params.frames - indice) / 2 );
 		} else {
-			fin_bloque = indice + params.numeroDeBloques - 1;
+			fin_bloque = indice + params.tamBloque - 1;
 		}
 		
 
@@ -49,6 +49,11 @@ void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
 			}
 		}
 
+
+		//-----matriz de Cs------
+		vector<vector<double>> M_C (params.tamBloque, vector<double>(params.tamBloque, 0));
+
+
 		//Matriz de Cs
 		//----en la primera fila queda: 1 0 ... 0
 		M_C[0][0] = 1;
@@ -64,9 +69,7 @@ void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
 		M_C[fin_bloque - indice][fin_bloque - indice] = 1;
 
 
-		//-----matriz de Cs------
-		vector<vector<double>> M_C (params.numeroDeBloques, vector<double>(params.numeroDeBloques, 0));
-
+		
 		//----diagonalizamos la matriz
 		for (int k = 1; k < fin_bloque - indice - 1; k++) {
 			aux = M_C[k][k-1] / M_C[k-1][k-1];
@@ -87,9 +90,9 @@ void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
 
 
 		//---En M_sal vamos a guardar los valores de los frames intermedios que vamos sacando
-		vector<vector<vector<int>>> M_sal (params.framesIntermedios * params.numeroDeBloques, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
-		vector<double> C(params.numeroDeBloques, 0);
-		vector<double> D(params.numeroDeBloques, 0);
+		vector<vector<vector<int>>> M_sal (params.framesIntermedios * params.tamBloque, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
+		vector<double> C(params.tamBloque, 0);
+		vector<double> D(params.tamBloque, 0);
 
 		for (int i = 0; i < params.height; i++) {
 			for (int j = 0; j < params.width; j++) {
@@ -143,3 +146,5 @@ void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
 
 
 	return;
+
+}

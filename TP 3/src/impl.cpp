@@ -18,24 +18,23 @@ void methodDispatch(int argc, char **argv)
         }
         case 2:
         {
-                ParametrosConNoDeBloques params(argc, argv);
-                splinesConNoDeBloques(params);
-                break;
-            
-        }
-		case 3:
-		{
 			if (argc < 6) 
 			{
-				cout << "Falta el argumento de numero de bloques\n";
+				cout << "Falta el argumento de tamaño de bloques\n";
 				exit(0);
 			}
 			else 
 			{
-				ParametrosConNoDeBloques params(argc, argv);
-				splinesConNoDeBloques(params);
+				ParametrosConBloques params(argc, argv);
+				splinesPorBloques(params);
 				break;
 			}
+        }
+		case 3:
+		{
+			Parametros params(argc, argv);
+			eliminarFrames(params);
+			break;
 		}
         default:
         {

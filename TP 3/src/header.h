@@ -45,21 +45,22 @@ struct Parametros
     const double framerate;
 };
 
-struct ParametrosConNoDeBloques : public Parametros
+struct ParametrosConBloques : public Parametros
 {
-    ParametrosConNoDeBloques (int argc, char **argv)
+    ParametrosConBloques (int argc, char **argv)
 		:	Parametros(argc, argv),
-			numeroDeBloques(atoi(argv[5]))
+			tamBloque(atoi(argv[5]))
 			{}
 	
-	const int numeroDeBloques;
+	const int tamBloque;
 };
 
 void methodDispatch(int, char **);
 void vecinoMasCercano(Parametros&);
 void lineal(Parametros&);
 void splines(Parametros&);
-void splinesConNoDeBloques(ParametrosConNoDeBloques&);
+void splinesPorBloques(ParametrosConBloques&);
+void eliminarFrames(Parametros&);
 
 
 void imprimirFrame (ofstream &output, const vector<vector<int>> &f, const int height, const int width);
