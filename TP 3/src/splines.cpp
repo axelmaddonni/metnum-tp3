@@ -5,104 +5,141 @@
 using std::endl;
 using std::vector;
 
-void splines(Parametros &params) {
+void splinesConNoDeBloques(ParametrosConNoDeBloques &params) {
 	params.output << (params.frames - 1) * params.framesIntermedios + params.frames << endl;
 	params.output << params.height << " " << params.width << endl;
 	params.output << params.framerate << endl;
 
-	//-----matriz de Cs------
-	vector<vector<double>> M_C (params.frames, vector<double>(params.frames, 0));
-	//----en la primera fila queda: 1 0 ... 0
-	M_C[0][0] = 1;
-	for (int i=1; i < params.frames-1; i++) {
-		//--i-1 = 1*(x_i+1 - x_i)
-		M_C[i][i - 1] = params.framesIntermedios + 1;
-		//--i = 4*(x_i+1 - x_i)
-		M_C[i][i] = 4 * (params.framesIntermedios + 1);
-		//--i+1 = 1*(x_i+1 - x_i)
-		M_C[i][i + 1] = params.framesIntermedios + 1;
-	}
-	//----en la última fila queda: 0 ... 0 1
-	M_C[params.frames - 1][params.frames - 1] = 1;
+	vector<vector<vector<int>>> Frames(params.numeroDeBloques, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
+	
 
-	//vector de los resultados (la derecha la igualdad de las ecuaciones)
-	vector<double> res (params.frames, 0);
+	//vector de vectores de los resultados (la derecha la igualdad de las ecuaciones de C)
+	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>(params.numeroDeBloques, 1)));
 
 	double aux;
-	//----diagonalizamos la matriz
-	for (int i=1; i < params.frames - 1; i++) {
-		aux = M_C[i][i-1] / M_C[i-1][i-1];
-		M_C[i][i-1] = 0;
-		res[i] = res[i] - res[i-1] * aux;
-		aux = M_C[params.frames - 1 - i][params.frames - i] / M_C[params.frames - i][params.frames - i];
-		M_C[params.frames - 1 - i][params.frames - i] = 0;
-		res[params.frames - 1 - i] = res[params.frames - 1 - i] - res[params.frames - i] * aux;
-	}
-
-	//---Sacamos los valores de C
-	vector<double> C (params.frames, 0);
-	for (int i = 0; i < params.frames; i++) {
-		//---Como M_C es diagonal solo tenemos que pasar dividiendo el valor de la diagonal
-		C[i] = res[i] / M_C[i][i];
-	}
-
-	//---Despejamos los valores de D (usando C)
-	vector<double> D(params.frames, 0);
-	for (int i = 0; i < params.frames; i++) {
-		D[i] = (C[i+1] - C[i]) / ( (params.framesIntermedios + 1) * 3);
-	}
 
 
+	int fin_bloque = 0;
+	int indice = 0;
+	int ultimo_indice = 0;
 	double B;
 
-	//---M1: cada pixel es un x_i-1
-	vector<vector<int>> M1 (params.height, vector<int>(params.width, 0));
-	//---M2: cada pixel es un x_i
-	vector<vector<int>> M2 (params.height, vector<int>(params.width, 0));
-
-	for (int i = 0; i < params.height; i++) {
-		for (int j = 0; j < params.width; j++) {
-			params.input >> M2[i][j];
+	//mientras no llega al final de los bloques
+	while (fin_bloque < params.frames -1) {
+		//calcula el fin de bloques
+		if (indice + params.numeroDeBloques >= params.frames ) {
+			fin_bloque = params.frames - 1;
+		} else if (indice + (params.numeroDeBloques * 2) >= params.frames ) {
+			fin_bloque = indice + round( (params.frames - indice) / 2 );
+		} else {
+			fin_bloque = indice + params.numeroDeBloques - 1;
 		}
-	}
-	//---En M_sal vamos a guardar los valores de los frames intermedios que vamos sacando
-	vector<vector<vector<int>>> M_sal (params.framesIntermedios, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
-
-	for (int k = 0; k < params.frames - 1; k++) {
 		
-		for (int i = 0; i < params.height; i++) {
-			for (int j = 0; j < params.width; j++) {
-				M1[i][j] = M2[i][j];
-			}
-		}
-		for (int i = 0; i < params.height; i++) {
-			for (int j = 0; j < params.width; j++) {
-				params.input >> M2[i][j];
-			}
-		}
 
-		//---Imprimimos x_i
-		imprimirFrame(params.output, M1, params.height, params.width);
-		for (int i = 0; i < params.height; i++) {
-			for (int j = 0; j < params.width; j++) {
-				//---Sacamos el b_i
-				B = M2[i][j] - M1[i][j] - C[k] * pow(params.framesIntermedios + 1, 2) - D[k] * pow(params.framesIntermedios + 1, 3);
-				B = B / (params.framesIntermedios + 1);
-
-				for (int f = 0; f < params.framesIntermedios; f++) {
-					//---aux = (x - x_i) //distancia entre el x_i y el x del nuevo frame
-					int aux = f + 1;
-					//---Aplicamos la función al x del nuevo frame
-					M_sal[f][i][j] = M1[i][j] + B * aux + C[k] * pow(aux, 2) + D[k] * pow(aux, 3);
+		for (int k = 0; k <= fin_bloque - indice; k++) {
+			for (int i = 0; i < params.height; i++) {
+				for (int j = 0; j < params.width; j++) {
+					//guarda las imagenes del bloque actual
+					params.input >> Frames[k][i][j];
+					if (k>1) {
+						//calcula los valores de los vectores de resultados (la derecha de la igualdad de las ecuaciones de C)
+						res[i][j][k-1] = 3 * ( (double)(Frames[k][i][j] - (2 * Frames[k-1][i][j]) + Frames[k-2][i][j]) / (double)(params.framesIntermedios + 1) );
+					}
 				}
 			}
 		}
-		
-		for (int f = 0; f < params.framesIntermedios; ++f) {
-			//---Imprimimos los nuevos frames
-			imprimirFrame(params.output, M_sal[f], params.height, params.width);
+
+		//Matriz de Cs
+		//----en la primera fila queda: 1 0 ... 0
+		M_C[0][0] = 1;
+		for (int i=1; i < fin_bloque - indice; i++) {
+			//--i-1 = 1*(x_i+1 - x_i)
+			M_C[i][i - 1] = params.framesIntermedios + 1;
+			//--i = 4*(x_i+1 - x_i)
+			M_C[i][i] = 4 * (params.framesIntermedios + 1);
+			//--i+1 = 1*(x_i+1 - x_i)
+			M_C[i][i + 1] = params.framesIntermedios + 1;
 		}
+		//----en la última fila queda: 0 ... 0 1
+		M_C[fin_bloque - indice][fin_bloque - indice] = 1;
+
+
+		//-----matriz de Cs------
+		vector<vector<double>> M_C (params.numeroDeBloques, vector<double>(params.numeroDeBloques, 0));
+
+		//----diagonalizamos la matriz
+		for (int k = 1; k < fin_bloque - indice - 1; k++) {
+			aux = M_C[k][k-1] / M_C[k-1][k-1];
+			M_C[k][k-1] = 0;
+			for (int i = 0; i < params.height; i++) {
+				for (int j = 0; j < params.width; j++) {
+					res[i][j][k] = res[i][j][k] - res[i][j][k-1] * aux;
+				}
+			}
+			aux = M_C[fin_bloque - indice - 1 - k][fin_bloque - indice - 1 - k] / M_C[fin_bloque - indice - k][fin_bloque - indice - k];
+			M_C[fin_bloque - indice - 2 - k][fin_bloque - indice - 1 - k] = 0;
+			for (int i = 0; i < params.height; i++) {
+				for (int j = 0; j < params.width; j++) {
+					res[i][j][fin_bloque - indice - 1 - k] = res[i][j][fin_bloque - indice - 1 - k] - res[i][j][fin_bloque - indice - k] * aux;
+				}
+			}
+		}
+
+
+		//---En M_sal vamos a guardar los valores de los frames intermedios que vamos sacando
+		vector<vector<vector<int>>> M_sal (params.framesIntermedios * params.numeroDeBloques, vector<vector<int>>(params.height, vector<int>(params.width, 0)));
+		vector<double> C(params.numeroDeBloques, 0);
+		vector<double> D(params.numeroDeBloques, 0);
+
+		for (int i = 0; i < params.height; i++) {
+			for (int j = 0; j < params.width; j++) {
+				//---Sacamos los valores de C
+				for (int k = 0; k <= fin_bloque - indice; k++) {
+					//---Como M_C es diagonal solo tenemos que pasar dividiendo el valor de la diagonal
+					C[k] = res[i][j][k] / M_C[k][k];
+				}
+				//---Despejamos los valores de D (usando C)
+				for (int k = 0; k < fin_bloque - indice; k++) {
+					D[k] = (C[k+1] - C[k]) / ( (params.framesIntermedios + 1) * 3);
+				}
+
+				for (int k = 0; k < fin_bloque - indice; k++) {
+					
+					//---Sacamos el b_i
+					B = Frames[k+1][i][j] - Frames[k][i][j] - C[k] * pow(params.framesIntermedios + 1, 2) - D[k] * pow(params.framesIntermedios + 1, 3);
+					B = B / (params.framesIntermedios + 1);
+
+					for (int f = 0; f < params.framesIntermedios; f++) {
+						//---aux = (x - x_i) //distancia entre el x_i y el x del nuevo frame
+						int aux = f + 1;
+						//---Aplicamos la función al x del nuevo frame
+						M_sal[(k * params.framesIntermedios) + f][i][j] = round(Frames[k][i][j] + B * aux + C[k] * pow(aux, 2) + D[k] * pow(aux, 3));
+					}
+
+				}
+			}
+		}
+
+
+		for (int k = 0; k < fin_bloque - indice; k++) {
+
+			//imprimo el primer frame tal cual
+			imprimirFrame(params.output, Frames[k], params.height, params.width);
+
+			//---Imprimimos los nuevos frames
+			for (int f = 0; f < params.framesIntermedios; f++) {
+				imprimirFrame(params.output, M_sal[(k * params.framesIntermedios) + f], params.height, params.width);
+			}
+		}
+
+
+
+		//recalcula el indice
+		ultimo_indice = fin_bloque - indice;
+		indice = fin_bloque;
 	}
-	//---Al salir nos falta imprimir el último frame
-	imprimirFrame(params.output, M2, params.height, params.width);
-}
+	//imprimimos el último
+	imprimirFrame(params.output, Frames[ultimo_indice], params.height, params.width);
+
+
+	return;

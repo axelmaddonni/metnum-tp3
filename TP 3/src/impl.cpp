@@ -18,9 +18,10 @@ void methodDispatch(int argc, char **argv)
         }
         case 2:
         {
-            Parametros params(argc, argv);
-            splines(params);
-            break;
+                ParametrosConNoDeBloques params(argc, argv);
+                splinesConNoDeBloques(params);
+                break;
+            
         }
 		case 3:
 		{
@@ -43,8 +44,6 @@ void methodDispatch(int argc, char **argv)
         }
     }
 }
-
-void splinesConNoDeBloques(ParametrosConNoDeBloques&) {}
 
 void imprimirFrame (ofstream &output, const vector<vector<int>> &f, const int height, const int width)
 {
