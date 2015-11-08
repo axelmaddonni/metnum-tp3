@@ -81,6 +81,9 @@ double ecm (Parametros &params, Parametros &params2){
 	params.output << "ECM promedio: " << promedio << std::endl;
 	params.output << "Máximo error obtenido: " << max << std::endl;
 
+	cout << "ECM promedio: " << promedio << std::endl;
+	cout << "Máximo error obtenido: " << max << std::endl;
+
 	return promedio;
 
 }
