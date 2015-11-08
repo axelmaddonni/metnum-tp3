@@ -36,6 +36,20 @@ void methodDispatch(int argc, char **argv)
 			eliminarFrames(params);
 			break;
 		}
+        case 4:
+        {
+            Parametros params(argc, argv);
+            Parametros params2(argc, (argv+4));
+            ecm(params, params2);
+            break;
+        }
+        case 5:
+        {
+            Parametros params(argc, argv);
+            Parametros params2(argc, (argv+4));
+            psnr(params, params2);
+            break;
+        }
         default:
         {
             cout << "Ese no es un metodo soportado.\n";

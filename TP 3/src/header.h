@@ -61,7 +61,8 @@ void lineal(Parametros&);
 void splines(Parametros&);
 void splinesPorBloques(ParametrosConBloques&);
 void eliminarFrames(Parametros&);
-
+double ecm (Parametros&, Parametros&);
+double psnr (Parametros&, Parametros&);
 
 void imprimirFrame (ofstream &output, const vector<vector<int>> &f, const int height, const int width);
 void imprimirNframes (ofstream &output, const vector<vector<int>> &f, const int height, const int width, const int n);
