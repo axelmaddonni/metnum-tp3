@@ -17,7 +17,9 @@ void eliminarFrames (Parametros &params){
 	ofstream output;
 	*/
 
-	assert(params.framesIntermedios < params.frames -2);
+	//std::cout << params.framesIntermedios << ' ' << params.frames << std::endl;
+
+	assert(params.framesIntermedios < (params.frames -2));
 
 	params.output << (params.frames/(params.framesIntermedios+1)) + ( (params.frames % (params.framesIntermedios+1) != 0) ? 1 : 0 ) << std::endl;
 	params.output << params.height << " " << params.width << std::endl;

@@ -162,6 +162,7 @@ void splinesPorBloques(ParametrosConBloques &params) {
 
 
 	}
+	
 	//imprimimos el último
 	imprimirFrame(params.output, Frames[ultimo_indice], params.height, params.width);
 
