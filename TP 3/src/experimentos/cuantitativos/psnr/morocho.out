@@ -1,0 +1,51 @@
+Calculando psnr morocho
+Calculando Vecino mas cercano
+Frames internos = 2
+PSNR promedio: 39.1805
+Máximo psnr obtenido: 60.767
+Frames internos = 4
+PSNR promedio: 33.6034
+Máximo psnr obtenido: 58.1419
+Frames internos = 6
+PSNR promedio: 31.3594
+Máximo psnr obtenido: 57.6381
+Calculando interpolación lineal
+Frames internos = 2
+PSNR promedio: 34.4392
+Máximo psnr obtenido: 55.0494
+Frames internos = 4
+PSNR promedio: 32.8016
+Máximo psnr obtenido: 51.8694
+Frames internos = 6
+PSNR promedio: 31.1006
+Máximo psnr obtenido: 48.8574
+Calculando splines de bloque 4
+Frames internos = 2
+PSNR promedio: 33.4144
+Máximo psnr obtenido: 49.6244
+Frames internos = 4
+PSNR promedio: 32.7601
+Máximo psnr obtenido: 50.6619
+Frames internos = 6
+PSNR promedio: 30.7256
+Máximo psnr obtenido: 52.2297
+Calculando splines de bloque 8
+Frames internos = 2
+PSNR promedio: 32.4942
+Máximo psnr obtenido: 49.0078
+Frames internos = 4
+PSNR promedio: 31.84
+Máximo psnr obtenido: 48.4897
+Frames internos = 6
+PSNR promedio: 30.08
+Máximo psnr obtenido: 50.2785
+Calculando splines de bloque 16
+Frames internos = 2
+PSNR promedio: 32.3172
+Máximo psnr obtenido: 48.5945
+Frames internos = 4
+PSNR promedio: 31.6833
+Máximo psnr obtenido: 47.6299
+Frames internos = 6
+PSNR promedio: 29.9807
+Máximo psnr obtenido: 49.9621

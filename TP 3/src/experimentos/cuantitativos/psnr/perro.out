@@ -1,0 +1,51 @@
+Calculando psnr perro
+Calculando Vecino mas cercano
+Frames internos = 2
+PSNR promedio: 22.2815
+Máximo psnr obtenido: 30.5085
+Frames internos = 4
+PSNR promedio: 20.5858
+Máximo psnr obtenido: 30.5085
+Frames internos = 6
+PSNR promedio: 19.5938
+Máximo psnr obtenido: 29.8505
+Calculando interpolación lineal
+Frames internos = 2
+PSNR promedio: 23.6189
+Máximo psnr obtenido: 31.1237
+Frames internos = 4
+PSNR promedio: 21.6657
+Máximo psnr obtenido: 30.4781
+Frames internos = 6
+PSNR promedio: 20.5687
+Máximo psnr obtenido: 30.0902
+Calculando splines de bloque 4
+Frames internos = 2
+PSNR promedio: 23.1742
+Máximo psnr obtenido: 31.7081
+Frames internos = 4
+PSNR promedio: 21.0954
+Máximo psnr obtenido: 30.8959
+Frames internos = 6
+PSNR promedio: 20.0804
+Máximo psnr obtenido: 30.1245
+Calculando splines de bloque 8
+Frames internos = 2
+PSNR promedio: 22.7614
+Máximo psnr obtenido: 31.6417
+Frames internos = 4
+PSNR promedio: 20.774
+Máximo psnr obtenido: 29.7773
+Frames internos = 6
+PSNR promedio: 19.7952
+Máximo psnr obtenido: 29.1657
+Calculando splines de bloque 16
+Frames internos = 2
+PSNR promedio: 22.6479
+Máximo psnr obtenido: 31.0061
+Frames internos = 4
+PSNR promedio: 20.5192
+Máximo psnr obtenido: 28.9673
+Frames internos = 6
+PSNR promedio: 19.4903
+Máximo psnr obtenido: 27.0194

@@ -1,0 +1,51 @@
+Calculando ecm morocho
+Calculando Vecino mas cercano
+Frames internos = 2
+ECM promedio: 83.308
+Máximo error obtenido: 5725.87
+Frames internos = 4
+ECM promedio: 122.311
+Máximo error obtenido: 2098.77
+Frames internos = 6
+ECM promedio: 203.109
+Máximo error obtenido: 5714.16
+Calculando interpolación lineal
+Frames internos = 2
+ECM promedio: 51.6138
+Máximo error obtenido: 2551.35
+Frames internos = 4
+ECM promedio: 92.725
+Máximo error obtenido: 1492.78
+Frames internos = 6
+ECM promedio: 146.864
+Máximo error obtenido: 3166.05
+Calculando splines de bloque 4
+Frames internos = 2
+ECM promedio: 65.2409
+Máximo error obtenido: 3358.05
+Frames internos = 4
+ECM promedio: 98.4069
+Máximo error obtenido: 1435.91
+Frames internos = 6
+ECM promedio: 162.418
+Máximo error obtenido: 2845.6
+Calculando splines de bloque 8
+Frames internos = 2
+ECM promedio: 76.3302
+Máximo error obtenido: 3527.96
+Frames internos = 4
+ECM promedio: 111.826
+Máximo error obtenido: 1361.28
+Frames internos = 6
+ECM promedio: 178.607
+Máximo error obtenido: 3158.33
+Calculando splines de bloque 16
+Frames internos = 2
+ECM promedio: 80.32
+Máximo error obtenido: 3358.05
+Frames internos = 4
+ECM promedio: 114.907
+Máximo error obtenido: 1397.55
+Frames internos = 6
+ECM promedio: 185.017
+Máximo error obtenido: 2950.02

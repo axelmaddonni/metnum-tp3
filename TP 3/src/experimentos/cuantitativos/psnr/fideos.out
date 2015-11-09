@@ -1,0 +1,51 @@
+Calculando psnr fideos
+Calculando Vecino mas cercano
+Frames internos = 2
+PSNR promedio: 29.0771
+Máximo psnr obtenido: 33.6807
+Frames internos = 4
+PSNR promedio: 27.2282
+Máximo psnr obtenido: 33.6807
+Frames internos = 6
+PSNR promedio: 26.0286
+Máximo psnr obtenido: 33.6807
+Calculando interpolación lineal
+Frames internos = 2
+PSNR promedio: 30.2675
+Máximo psnr obtenido: 34.4246
+Frames internos = 4
+PSNR promedio: 28.3235
+Máximo psnr obtenido: 35.8627
+Frames internos = 6
+PSNR promedio: 26.998
+Máximo psnr obtenido: 33.482
+Calculando splines de bloque 4
+Frames internos = 2
+PSNR promedio: 30.1813
+Máximo psnr obtenido: 47.3838
+Frames internos = 4
+PSNR promedio: 27.7709
+Máximo psnr obtenido: 33.5198
+Frames internos = 6
+PSNR promedio: 26.5067
+Máximo psnr obtenido: 33.7696
+Calculando splines de bloque 8
+Frames internos = 2
+PSNR promedio: 29.8654
+Máximo psnr obtenido: 47.3838
+Frames internos = 4
+PSNR promedio: 27.4856
+Máximo psnr obtenido: 33.3254
+Frames internos = 6
+PSNR promedio: 26.1694
+Máximo psnr obtenido: 33
+Calculando splines de bloque 16
+Frames internos = 2
+PSNR promedio: 29.6349
+Máximo psnr obtenido: 47.3838
+Frames internos = 4
+PSNR promedio: 27.004
+Máximo psnr obtenido: 33.3254
+Frames internos = 6
+PSNR promedio: 25.9149
+Máximo psnr obtenido: 31.2269

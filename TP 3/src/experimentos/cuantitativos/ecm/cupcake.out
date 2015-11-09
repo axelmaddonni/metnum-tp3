@@ -1,0 +1,51 @@
+Calculando ecm cupcake
+Calculando Vecino mas cercano
+Frames internos = 2
+ECM promedio: 45.0112
+Máximo error obtenido: 3299.59
+Frames internos = 4
+ECM promedio: 75.0243
+Máximo error obtenido: 3302.67
+Frames internos = 6
+ECM promedio: 91.8027
+Máximo error obtenido: 316.587
+Calculando interpolación lineal
+Frames internos = 2
+ECM promedio: 29.8591
+Máximo error obtenido: 1474.74
+Frames internos = 4
+ECM promedio: 53.6601
+Máximo error obtenido: 1316.88
+Frames internos = 6
+ECM promedio: 75.7466
+Máximo error obtenido: 785.545
+Calculando splines de bloque 4
+Frames internos = 2
+ECM promedio: 35.3717
+Máximo error obtenido: 1959.89
+Frames internos = 4
+ECM promedio: 62.177
+Máximo error obtenido: 1703.56
+Frames internos = 6
+ECM promedio: 85.1963
+Máximo error obtenido: 1037.42
+Calculando splines de bloque 8
+Frames internos = 2
+ECM promedio: 33.5335
+Máximo error obtenido: 1060.74
+Frames internos = 4
+ECM promedio: 66.3889
+Máximo error obtenido: 1703.56
+Frames internos = 6
+ECM promedio: 95.1269
+Máximo error obtenido: 1123.97
+Calculando splines de bloque 16
+Frames internos = 2
+ECM promedio: 37.763
+Máximo error obtenido: 1305.78
+Frames internos = 4
+ECM promedio: 73.8393
+Máximo error obtenido: 1793.46
+Frames internos = 6
+ECM promedio: 98.9849
+Máximo error obtenido: 1037.42

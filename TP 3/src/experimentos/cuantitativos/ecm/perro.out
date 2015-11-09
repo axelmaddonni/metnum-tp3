@@ -1,0 +1,51 @@
+Calculando ecm perro
+Calculando Vecino mas cercano
+Frames internos = 2
+ECM promedio: 314.75
+Máximo error obtenido: 1649.76
+Frames internos = 4
+ECM promedio: 571.526
+Máximo error obtenido: 1992.46
+Frames internos = 6
+ECM promedio: 762.867
+Máximo error obtenido: 2340.72
+Calculando interpolación lineal
+Frames internos = 2
+ECM promedio: 229.528
+Máximo error obtenido: 1163.21
+Frames internos = 4
+ECM promedio: 427.874
+Máximo error obtenido: 1359.27
+Frames internos = 6
+ECM promedio: 585.446
+Máximo error obtenido: 1610.4
+Calculando splines de bloque 4
+Frames internos = 2
+ECM promedio: 256.704
+Máximo error obtenido: 1298.27
+Frames internos = 4
+ECM promedio: 488.344
+Máximo error obtenido: 1490.22
+Frames internos = 6
+ECM promedio: 664.815
+Máximo error obtenido: 2021.49
+Calculando splines de bloque 8
+Frames internos = 2
+ECM promedio: 286.059
+Máximo error obtenido: 1340.14
+Frames internos = 4
+ECM promedio: 530.388
+Máximo error obtenido: 1530.92
+Frames internos = 6
+ECM promedio: 716.159
+Máximo error obtenido: 2808.73
+Calculando splines de bloque 16
+Frames internos = 2
+ECM promedio: 299.482
+Máximo error obtenido: 1913.96
+Frames internos = 4
+ECM promedio: 564.792
+Máximo error obtenido: 2764.92
+Frames internos = 6
+ECM promedio: 750.186
+Máximo error obtenido: 2985.46

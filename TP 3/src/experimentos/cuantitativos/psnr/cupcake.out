@@ -1,0 +1,51 @@
+Calculando psnr cupcake
+Calculando Vecino mas cercano
+Frames internos = 2
+PSNR promedio: 32.5224
+Máximo psnr obtenido: 38.4612
+Frames internos = 4
+PSNR promedio: 30.5887
+Máximo psnr obtenido: 38.7852
+Frames internos = 6
+PSNR promedio: 29.4282
+Máximo psnr obtenido: 38.1937
+Calculando interpolación lineal
+Frames internos = 2
+PSNR promedio: 34.1298
+Máximo psnr obtenido: 40.3945
+Frames internos = 4
+PSNR promedio: 31.7302
+Máximo psnr obtenido: 38.951
+Frames internos = 6
+PSNR promedio: 30.3006
+Máximo psnr obtenido: 39.9429
+Calculando splines de bloque 4
+Frames internos = 2
+PSNR promedio: 33.8389
+Máximo psnr obtenido: 43.6699
+Frames internos = 4
+PSNR promedio: 31.4883
+Máximo psnr obtenido: 51.1884
+Frames internos = 6
+PSNR promedio: 29.7734
+Máximo psnr obtenido: 37.7825
+Calculando splines de bloque 8
+Frames internos = 2
+PSNR promedio: 33.3273
+Máximo psnr obtenido: 42.6721
+Frames internos = 4
+PSNR promedio: 31.1883
+Máximo psnr obtenido: 51.1884
+Frames internos = 6
+PSNR promedio: 29.4519
+Máximo psnr obtenido: 37.8952
+Calculando splines de bloque 16
+Frames internos = 2
+PSNR promedio: 33.114
+Máximo psnr obtenido: 42.6694
+Frames internos = 4
+PSNR promedio: 30.6803
+Máximo psnr obtenido: 51.1884
+Frames internos = 6
+PSNR promedio: 29.1705
+Máximo psnr obtenido: 37.5849

@@ -1,0 +1,51 @@
+Calculando ecm bebes
+Calculando Vecino mas cercano
+Frames internos = 2
+ECM promedio: 120.327
+Máximo error obtenido: 2744.17
+Frames internos = 4
+ECM promedio: 201.26
+Máximo error obtenido: 2737.22
+Frames internos = 6
+ECM promedio: 264.514
+Máximo error obtenido: 2064.46
+Calculando interpolación lineal
+Frames internos = 2
+ECM promedio: 86.5087
+Máximo error obtenido: 1626.55
+Frames internos = 4
+ECM promedio: 153.048
+Máximo error obtenido: 1542.88
+Frames internos = 6
+ECM promedio: 209.167
+Máximo error obtenido: 1552.01
+Calculando splines de bloque 4
+Frames internos = 2
+ECM promedio: 98.4989
+Máximo error obtenido: 1623.07
+Frames internos = 4
+ECM promedio: 179.913
+Máximo error obtenido: 1784.34
+Frames internos = 6
+ECM promedio: 242.925
+Máximo error obtenido: 2132.5
+Calculando splines de bloque 8
+Frames internos = 2
+ECM promedio: 108.7
+Máximo error obtenido: 1970.12
+Frames internos = 4
+ECM promedio: 189.55
+Máximo error obtenido: 2445.58
+Frames internos = 6
+ECM promedio: 258.044
+Máximo error obtenido: 1734.64
+Calculando splines de bloque 16
+Frames internos = 2
+ECM promedio: 125.534
+Máximo error obtenido: 2009.64
+Frames internos = 4
+ECM promedio: 218.498
+Máximo error obtenido: 1806.3
+Frames internos = 6
+ECM promedio: 265.835
+Máximo error obtenido: 1766.2

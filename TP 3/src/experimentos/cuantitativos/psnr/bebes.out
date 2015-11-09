@@ -1,0 +1,51 @@
+Calculando psnr bebes
+Calculando Vecino mas cercano
+Frames internos = 2
+PSNR promedio: 34.6831
+Máximo psnr obtenido: 48.7057
+Frames internos = 4
+PSNR promedio: 32.5697
+Máximo psnr obtenido: 47.8348
+Frames internos = 6
+PSNR promedio: 31.0408
+Máximo psnr obtenido: 47.8348
+Calculando interpolación lineal
+Frames internos = 2
+PSNR promedio: 36.8022
+Máximo psnr obtenido: 51.3794
+Frames internos = 4
+PSNR promedio: 34.0206
+Máximo psnr obtenido: 50.6972
+Frames internos = 6
+PSNR promedio: 32.1325
+Máximo psnr obtenido: 50.038
+Calculando splines de bloque 4
+Frames internos = 2
+PSNR promedio: 36.2412
+Máximo psnr obtenido: 51.5771
+Frames internos = 4
+PSNR promedio: 33.3246
+Máximo psnr obtenido: 51.1005
+Frames internos = 6
+PSNR promedio: 31.4074
+Máximo psnr obtenido: 49.3479
+Calculando splines de bloque 8
+Frames internos = 2
+PSNR promedio: 35.577
+Máximo psnr obtenido: 51.4086
+Frames internos = 4
+PSNR promedio: 32.639
+Máximo psnr obtenido: 49.5726
+Frames internos = 6
+PSNR promedio: 30.3118
+Máximo psnr obtenido: 47.0995
+Calculando splines de bloque 16
+Frames internos = 2
+PSNR promedio: 33.9903
+Máximo psnr obtenido: 50.0875
+Frames internos = 4
+PSNR promedio: 29.5255
+Máximo psnr obtenido: 45.2769
+Frames internos = 6
+PSNR promedio: 29.1436
+Máximo psnr obtenido: 43.8679

@@ -1,0 +1,51 @@
+Calculando psnr tenis
+Calculando Vecino mas cercano
+Frames internos = 2
+PSNR promedio: 35.4634
+Máximo psnr obtenido: 54.34
+Frames internos = 4
+PSNR promedio: 33.3133
+Máximo psnr obtenido: 54.34
+Frames internos = 6
+PSNR promedio: 31.9285
+Máximo psnr obtenido: 54.34
+Calculando interpolación lineal
+Frames internos = 2
+PSNR promedio: 38.4812
+Máximo psnr obtenido: 53.5397
+Frames internos = 4
+PSNR promedio: 35.2684
+Máximo psnr obtenido: 50.4589
+Frames internos = 6
+PSNR promedio: 33.7438
+Máximo psnr obtenido: 71.2373
+Calculando splines de bloque 4
+Frames internos = 2
+PSNR promedio: 38.7222
+Máximo psnr obtenido: 78.141
+Frames internos = 4
+PSNR promedio: 35.3889
+Máximo psnr obtenido: 65.0841
+Frames internos = 6
+PSNR promedio: 33.4113
+Máximo psnr obtenido: 66.2021
+Calculando splines de bloque 8
+Frames internos = 2
+PSNR promedio: 38.3841
+Máximo psnr obtenido: 66.1642
+Frames internos = 4
+PSNR promedio: 34.8538
+Máximo psnr obtenido: 52.0888
+Frames internos = 6
+PSNR promedio: 32.8521
+Máximo psnr obtenido: 52.2219
+Calculando splines de bloque 16
+Frames internos = 2
+PSNR promedio: 38.0825
+Máximo psnr obtenido: 57.5429
+Frames internos = 4
+PSNR promedio: 34.4156
+Máximo psnr obtenido: 49.9326
+Frames internos = 6
+PSNR promedio: 32.4446
+Máximo psnr obtenido: 48.7811
