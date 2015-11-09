@@ -67,7 +67,7 @@ python textfileToVideo.py tests/$1/$1_Splines_FramesInt6_TamBloque16.out tests/$
 }
 
 
-if [ "$1" = "tenis" ] || [ "$1" = "morocho" ] || [ "$1" = "perro" ] 
+if [ "$1" = "tenis" ] || [ "$1" = "morocho" ] || [ "$1" = "perro" ] || [ "$1" = "cupcake" ]
 	then 
 	test $1
 else 

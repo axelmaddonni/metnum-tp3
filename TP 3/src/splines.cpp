@@ -15,10 +15,9 @@ void splinesPorBloques(ParametrosConBloques &params) {
 	
 
 	//vector de vectores de los resultados (la derecha la igualdad de las ecuaciones de C)
-	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>((params.tamBloque*2), 1)));
+	vector<vector<vector<double>>> res (params.height, vector<vector<double>>(params.width, vector<double>((params.tamBloque*2), 0))); //ACA HAY QUE CAMBIAR POR 0
 
 	double aux;
-
 
 	int fin_bloque = 0;
 	int indice = 0;
@@ -36,7 +35,7 @@ void splinesPorBloques(ParametrosConBloques &params) {
 	//mientras no llega al final de los bloques
 	while (fin_bloque < params.frames -1) {
 		//calcula el fin de bloques
-		if (indice + (params.tamBloque * 2) > params.frames) {
+		if (indice + (params.tamBloque * 2) > params.frames) { //perfecto
 			fin_bloque = params.frames - 1;
 		} else {
 			fin_bloque = indice + params.tamBloque - 1;
@@ -80,7 +79,7 @@ void splinesPorBloques(ParametrosConBloques &params) {
 		//----diagonalizamos la matriz
 		for (int k = 1; k < fin_bloque - indice - 1; k++) {
 			aux = M_C[k][k-1] / M_C[k-1][k-1];
-			M_C[k][k-1] = 0;
+			M_C[k][k-1] = 0; 
 			for (int i = 0; i < params.height; i++) {
 				for (int j = 0; j < params.width; j++) {
 					res[i][j][k] = res[i][j][k] - res[i][j][k-1] * aux;
@@ -94,6 +93,8 @@ void splinesPorBloques(ParametrosConBloques &params) {
 				}
 			}
 		}
+
+
 
 
 		//---En M_sal vamos a guardar los valores de los frames intermedios que vamos sacando
@@ -145,7 +146,7 @@ void splinesPorBloques(ParametrosConBloques &params) {
 			}
 		}
 
-		//recalcula el indice
+		//recalcula el ultimoindice
 		ultimo_indice = fin_bloque - indice;
 
 		//El ultimo frame del bloque es el primero del siguiente

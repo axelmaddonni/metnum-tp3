@@ -84,6 +84,9 @@ double psnr (Parametros &params, Parametros &params2){
 	params.output << "Máximo psnr obtenido: " << max << std::endl;
 	params.output << "Nota: el promedio y el max no tiene en cuenta los valores inf." << std::endl; 
 
+	cout << "PSNR promedio: " << promedio << std::endl;
+	cout << "Máximo psnr obtenido: " << max << std::endl;
+
 	return promedio;
 
 }
