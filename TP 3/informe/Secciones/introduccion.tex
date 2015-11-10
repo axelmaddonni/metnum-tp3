@@ -1,3 +1,9 @@
+\par Hoy en día los videos en cámara lenta o \textit{slow motion }son un éxito. Muchas páginas web se dedican exclusivamente a compartir estos videos. Pero teniendo en cuenta que las conexiones a internet no necesariamente son capaces de transportar la cantidad de datos que implican este tipo de videos, se trata de minimizar la dependencia de la velocidad de conexión solamente enviando el video original. Una vez que el usuario recibe esos datos, el trabajo de la cámara lenta puede hacerse en modo offline del lado del cliente. Para tal fin utilizaremos técnicas de interpolación, buscando generar, entre cada par de cuadros del video original, otros ficticios que ayuden a generar el efecto de slow motion.
+
+\par Consideraremos a un video un conjunto de cuadros o \textit{frames} que al reproducirse rápidamente transmite el efecto de movimiento a partir de tener un buen \textit{frame rate}, es decir, una alta cantidad de cuadros por segundo. Para producir el efecto de cámara lenta sobre un video, generaremos más cuadros entre cada par de cuadros consecutivos del video original y reproduciremos el resultado a la misma velocidad que el original. Las im\'agenes correspondientes a cada cuadro est\'an conformadas por p\'ixeles. En particular, utilizaremos im\'agenes en escala de grises para disminuir los costos en tiempo necesarios para procesar los datos y simplificar la implementaci\'on; sin embargo, la misma idea puede ser utilizada para videos en color. 
+
+\par Lo que haremos será interpolar en el tiempo los valores de los pixeles para cada posición de la imagen, generando así una función interpolante, que permita la obtención de nuevos frames partiendo del conocimiento de un conjunto discreto de puntos. Se proponen tres métodos de interpolación explicados a continuación: Vecino más cercano, Interpolación Lineal e Interpolación por Splines.
+
 \subsection{Vecino más cercano}
 
 \input{Secciones/introduccion/IntroVecinoMasCercano}
@@ -5,6 +11,8 @@
 \subsection{Interpolación Lineal}
 
 \input{Secciones/introduccion/IntroInterpolacionLineal}
+
+\newpage
 
 \subsection{Interpolación por Splines}
 

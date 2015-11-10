@@ -9,7 +9,7 @@
 \par Ambas métricas se utilizan para medir la diferencia absoluta entre dos señales, en este caso entre los valores de los pixels del video de entrada y del de salida. Los algoritmos implementados para calcular ECM y PSNR calculan dichos valores frame a frame y luego hacen un promedio entre todos los frames del video. Utilizaremos estos promedios obtenidos para comparar la efectividad (en términos cuantitativos) de cada algoritmo, dependiendo de los parámetros de entrada. (El algoritmo para ECM puede encontrarse en el Apéndice \ref{ecmalgo}). 
 \par Notar que en los casos en que el ECM entre dos frames sea 0, (debido a que dicho frame no se modificó), el PSNR da infinito. Para calcular el promedio del PSNR de un video, en estos casos, no se tomarán en cuenta dichos frames.
 
-\subsection{Error Cuadrático Medio (ECM)}
+\subsubsection{Experimentación con ECM y PSNR}
 
 \par Para calcular el ECM obtenido a partir de los videos generados con los algoritmos propuestos, implementamos tests que comparan frame a frame el video original ya en slow motion, con el video obtenido luego de eliminar frames intermedios y aplicar cada método para regenerar dichos frames. Es decir, si al video original le eliminamos 2 frames intermedios (utilizando la función \texttt{eliminarFrames}, ver Apéndice \ref{eliminarframes}), compararemos el video original con el video obtenido luego de aplicar cada uno de los algoritmos, tomando como parámetro la misma cantidad de frames intermedios que le habíamos eliminado al video en un principio, en este caso 2.
 \par Realizaremos esto para 6 videos diferentes, con distintas calidades y duraciones. Los videos elegidos como inputs se encuentran en slow motion originalmente, y muestran situaciones que consideramos interesantes para analizar resultados cuantitativos y cualitativos, como por ejemplo, una pelota de tenis volando o fideos cayendo lentamente, ya que se pueden apreciar las diferencias con los videos originales más claramente. Además, analizaremos los resultados según el tamaño y calidad del video, ya que algunos algoritmos podrían mejorar su rendimiento en dichos casos. Creemos que videos de mayor calidad generan resultados de mayor precisión.
@@ -26,9 +26,9 @@
 
 \par  \textbf{En el Apéndice \ref{cuant} se puede encontrar una tabla con todos los valores obtenidos sobre el ECM promedio y los ECM máximos obtenidos por cada algoritmo para cada input. A continuación estudiaremos el comportamiento de cada método desde distintos enfoques.}
 
-\subsection{Resultados sobre ECM y PSNR}
+\subsubsection{Resultados sobre ECM y PSNR}
 
-\subsubsection{Experimento 1: Efectividad de los métodos según ECM}
+\subsubsubsection{Experimento 1: Efectividad de los métodos según ECM}
 
 \par Comparamos la efectividad de los métodos según el ECM promedio obtenido en cada uno de los inputs con 2 frames intermedios eliminados. Cuanto menor sea el error, consideraremos que el método es más efectivo cuantitativamente. Dejaremos afuera el input \textit{perro} para que el gráfico de barras sea más claro, ya que son valores muy altos comparados a los demás.
 
@@ -43,7 +43,7 @@
 \par Se puede observar que el tamaño de los videos y la calidad no impacta significativamente en el error cuadrático medio. Sin embargo, el video \textit{perro}  tiene mayores valores de error en todos los algoritmos (ver Apéndice), debido a que es el único de los videos que fue grabado con un celular en movimiento.
 \par Por último, variar la calidad del video no trae grandes diferencias en términos cuantitativos, sin embargo, al observar los outputs, se nota una leve mejora del método de splines en términos cualitativos (se producen menos exploits). 
 
-\subsubsection{Experimento 2: Impacto del parámetro Frames Internos eliminados}
+\subsubsubsection{Experimento 2: Impacto del parámetro Frames Internos eliminados}
 
 \par Usando los mismos inputs, correremos los métodos tomando distintas cantidades de frames internos eliminados y compararemos los resultados. Aumentar la cantidad de frames internos a regenerar, debería aumentar el error cuadrático medio.
 
@@ -56,7 +56,7 @@
 \par En el gráfico se muestran los valores obtenidos al calcular el promedio de los ECM de cada input generados por cada método, según cuál fue la cantidad de frames internos pasada por parámetro.
 \par Efectivamente, aumentar framesIntermedios aumenta el error cuadrático medio. Se puede ver en el gráfico que lo hace linealmente, en todos los métodos. Esto se debe a que es mayor la cantidad de frames que se obtienen usando las funciones interpolantes, aumentando el error producido.
 
-\subsubsection{Experimento 3: Efectividad de los métodos según PSNR}
+\subsubsubsection{Experimento 3: Efectividad de los métodos según PSNR}
 
 \par El PSNR es la métrica utilizada con mayor frecuencia como medida de la calidad objetiva de video. Sin embargo, a causa del comportamiento nolineal del sistema visual humano los valores de PSNR no poseen una perfecta correlación con la calidad visual percibida. 
 \par Análogamente, calculamos los PSNR promedio obtenidos con cada algoritmo para los mismos inputs mencionados anteriormente:
@@ -68,6 +68,8 @@
 \end{figure}
 
 \bigskip
+
+\newpage
 
 \par Como era de esperar, los resultados se corresponden con los obtenidos a partir de comparar los ECM producidos por cada algoritmo. Por definición de PSNR, cuanto menor sea el error, mayor será el PSNR y por lo tanto mejor la calidad.
 \par  Interpolación lineal es el método con mayor efectividad en términos cuantitativos.
