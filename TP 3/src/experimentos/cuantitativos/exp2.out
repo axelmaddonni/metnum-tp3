@@ -1,0 +1,227 @@
+Testeando  cupcake
+generando nuevos inputs
+Testeando vecino mas cercano
+ECM promedio: 139.897
+Máximo error obtenido: 3299.27
+ECM promedio: 173.649
+Máximo error obtenido: 3299.27
+ECM promedio: 203.865
+Máximo error obtenido: 3273.7
+Testeando interpolacion lineal
+ECM promedio: 102.771
+Máximo error obtenido: 1619.73
+ECM promedio: 126.978
+Máximo error obtenido: 1891.85
+ECM promedio: 145.71
+Máximo error obtenido: 1956.39
+Testeando splines con bloques de 4
+ECM promedio: 120.536
+Máximo error obtenido: 2020.96
+ECM promedio: 135.446
+Máximo error obtenido: 1638.74
+ECM promedio: 158.281
+Máximo error obtenido: 1822.05
+Testeando splines con bloques de 8
+ECM promedio: 132.818
+Máximo error obtenido: 2113.49
+ECM promedio: 159.499
+Máximo error obtenido: 2444.12
+ECM promedio: 191.38
+Máximo error obtenido: 2899.87
+Testeando splines con bloques de 16
+ECM promedio: 144.168
+Máximo error obtenido: 2180.19
+ECM promedio: 171.063
+Máximo error obtenido: 2486.07
+ECM promedio: 181.014
+Máximo error obtenido: 1922.21
+
+Testeando  morocho
+generando nuevos inputs
+Testeando vecino mas cercano
+ECM promedio: 238.575
+Máximo error obtenido: 5712.15
+ECM promedio: 301.966
+Máximo error obtenido: 5714.54
+ECM promedio: 372.633
+Máximo error obtenido: 5724.2
+Testeando interpolacion lineal
+ECM promedio: 178.791
+Máximo error obtenido: 2932.84
+ECM promedio: 228.839
+Máximo error obtenido: 3052.93
+ECM promedio: 285.549
+Máximo error obtenido: 4117.25
+Testeando splines con bloques de 4
+ECM promedio: 205.235
+Máximo error obtenido: 3595.08
+ECM promedio: 263.639
+Máximo error obtenido: 3913.43
+ECM promedio: 328.838
+Máximo error obtenido: 4805
+Testeando splines con bloques de 8
+ECM promedio: 219.811
+Máximo error obtenido: 2877.86
+ECM promedio: 288.576
+Máximo error obtenido: 3913.43
+ECM promedio: 355.944
+Máximo error obtenido: 4845.68
+Testeando splines con bloques de 16
+ECM promedio: 235.553
+Máximo error obtenido: 2681.1
+ECM promedio: 309.813
+Máximo error obtenido: 4340.7
+ECM promedio: 371.42
+Máximo error obtenido: 5157.23
+
+Testeando  perro
+generando nuevos inputs
+Testeando vecino mas cercano
+ECM promedio: 928.773
+Máximo error obtenido: 2545.67
+ECM promedio: 1045.78
+Máximo error obtenido: 2701.89
+ECM promedio: 1153.35
+Máximo error obtenido: 2796.06
+Testeando interpolacion lineal
+ECM promedio: 714.487
+Máximo error obtenido: 1630.98
+ECM promedio: 811.541
+Máximo error obtenido: 1806.61
+ECM promedio: 898.419
+Máximo error obtenido: 1840.5
+Testeando splines con bloques de 4
+ECM promedio: 805.71
+Máximo error obtenido: 2286.77
+ECM promedio: 902.971
+Máximo error obtenido: 2062.2
+ECM promedio: 1002.64
+Máximo error obtenido: 2140.03
+Testeando splines con bloques de 8
+ECM promedio: 868.221
+Máximo error obtenido: 2544.86
+ECM promedio: 965.473
+Máximo error obtenido: 2902.4
+ECM promedio: 1093.97
+Máximo error obtenido: 2627.71
+Testeando splines con bloques de 16
+ECM promedio: 937.863
+Máximo error obtenido: 5035.06
+ECM promedio: 1017.85
+Máximo error obtenido: 4345.74
+ECM promedio: 1121.97
+Máximo error obtenido: 4280.96
+
+Testeando  tenis
+generando nuevos inputs
+Testeando vecino mas cercano
+ECM promedio: 119.139
+Máximo error obtenido: 541.298
+ECM promedio: 145.848
+Máximo error obtenido: 640.959
+ECM promedio: 172.35
+Máximo error obtenido: 730.85
+Testeando interpolacion lineal
+ECM promedio: 84.7986
+Máximo error obtenido: 345.737
+ECM promedio: 105.62
+Máximo error obtenido: 413.078
+ECM promedio: 126.105
+Máximo error obtenido: 458.6
+Testeando splines con bloques de 4
+ECM promedio: 92.5891
+Máximo error obtenido: 400.431
+ECM promedio: 115.657
+Máximo error obtenido: 488.198
+ECM promedio: 137.553
+Máximo error obtenido: 536.128
+Testeando splines con bloques de 8
+ECM promedio: 101.337
+Máximo error obtenido: 762.193
+ECM promedio: 124.194
+Máximo error obtenido: 757.972
+ECM promedio: 147.345
+Máximo error obtenido: 870.57
+Testeando splines con bloques de 16
+ECM promedio: 103.394
+Máximo error obtenido: 863.009
+ECM promedio: 130.813
+Máximo error obtenido: 647.5
+ECM promedio: 152.178
+Máximo error obtenido: 668.626
+
+Testeando  bebes
+generando nuevos inputs
+Testeando vecino mas cercano
+ECM promedio: 339.284
+Máximo error obtenido: 2767.01
+ECM promedio: 382.065
+Máximo error obtenido: 2573.3
+ECM promedio: 474.534
+Máximo error obtenido: 2760.58
+Testeando interpolacion lineal
+ECM promedio: 260.742
+Máximo error obtenido: 2356.99
+ECM promedio: 291.555
+Máximo error obtenido: 1774.73
+ECM promedio: 361.495
+Máximo error obtenido: 2100.74
+Testeando splines con bloques de 4
+ECM promedio: 311.528
+Máximo error obtenido: 2703.44
+ECM promedio: 351.764
+Máximo error obtenido: 2331.1
+ECM promedio: 410.711
+Máximo error obtenido: 2632.61
+Testeando splines con bloques de 8
+ECM promedio: 318.344
+Máximo error obtenido: 2543.48
+ECM promedio: 373.106
+Máximo error obtenido: 2130.68
+ECM promedio: 455.85
+Máximo error obtenido: 2672.92
+Testeando splines con bloques de 16
+ECM promedio: 350.758
+Máximo error obtenido: 2695.94
+ECM promedio: 391.76
+Máximo error obtenido: 2131.05
+ECM promedio: 475.147
+Máximo error obtenido: 2748.64
+
+Testeando  fideos
+generando nuevos inputs
+Testeando vecino mas cercano
+ECM promedio: 207.559
+Máximo error obtenido: 525.972
+ECM promedio: 237.893
+Máximo error obtenido: 601.683
+ECM promedio: 275.635
+Máximo error obtenido: 647.302
+Testeando interpolacion lineal
+ECM promedio: 158.705
+Máximo error obtenido: 370.672
+ECM promedio: 183.154
+Máximo error obtenido: 406.53
+ECM promedio: 213.089
+Máximo error obtenido: 423.046
+Testeando splines con bloques de 4
+ECM promedio: 178.391
+Máximo error obtenido: 405.039
+ECM promedio: 211.412
+Máximo error obtenido: 486.594
+ECM promedio: 245.196
+Máximo error obtenido: 510.537
+Testeando splines con bloques de 8
+ECM promedio: 195.794
+Máximo error obtenido: 585.066
+ECM promedio: 226.022
+Máximo error obtenido: 597.483
+ECM promedio: 254.311
+Máximo error obtenido: 575.625
+Testeando splines con bloques de 16
+ECM promedio: 195.794
+Máximo error obtenido: 585.066
+ECM promedio: 226.022
+Máximo error obtenido: 597.483
+ECM promedio: 254.311
+Máximo error obtenido: 575.625
