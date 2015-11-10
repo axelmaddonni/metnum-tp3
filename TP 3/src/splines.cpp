@@ -85,7 +85,7 @@ void splinesPorBloques(ParametrosConBloques &params) {
 					res[i][j][k] = res[i][j][k] - res[i][j][k-1] * aux;
 				}
 			}
-			aux = M_C[fin_bloque - indice - 1 - k][fin_bloque - indice - 1 - k] / M_C[fin_bloque - indice - k][fin_bloque - indice - k];
+			aux = M_C[fin_bloque - indice - 1 - k][fin_bloque - indice - k] / M_C[fin_bloque - indice - k][fin_bloque - indice - k];
 			M_C[fin_bloque - indice - 2 - k][fin_bloque - indice - 1 - k] = 0;
 			for (int i = 0; i < params.height; i++) {
 				for (int j = 0; j < params.width; j++) {

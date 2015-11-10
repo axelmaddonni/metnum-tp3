@@ -1,0 +1,3 @@
+\par El m\'etodo de interpolaci\'on del Vecino mas Cercano se basa en tomar los valores del frame orginal mas cercano a la posici\'on del nuevo frame y asign\'arselos.
+
+\par Por ejemplo, si queremos agregar un frame $B$ en la posici\'on $x_k$ con $x_i < x_k < x_{k+1}$, asumiendo que contamos con un frame A que se encuentra en la posici\'on $x_i$ y un frame C que se encuentra en la posici\'on $x_{i+1}$ y que C y B son los vecinos mas cercanos de A, entonces para determinar qu\'e frame vamos a copiar, tomamos dist($x_i$, $x_k$) y dist($x_k$, $x_{i+1}$). Luego tomamos A o C dependiendo de cu\'añ se encuentra mas cerca. Finalmente copiamos los p\'ixeles del vecino mas cercano a B, obteniendo as\'i el nuevo frame.

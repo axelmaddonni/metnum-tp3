@@ -54,8 +54,7 @@
 
 
 \subsection{Experimento 4: Tiempos de ejecucí\'on vs Cantidad de frames intermedios}
-\par Vamos a observar como se comportan los m\'etodos al variar la cantidad de frames que se desean agregar. A pesar de que no se hacen muchos pasos extra para agregar un frame intermedio y solo se realiza una ecuaci\'on, esta ecuaci\'on se repite para cada pixel del nuevo frame. Creemos que esto va a afectar en el tiempo de ejecuci\'on de los tres m\'etodos, aunque sea un poco para notarlo en los resultados.
-
+\par Vamos a observar como se comportan los m\'etodos al variar la cantidad de frames que se desean agregar. A pesar de que no se hacen muchos pasos extra para agregar un frame intermedio y solo se realiza una ecuaci\'on, esta ecuaci\'on se repite para cada pixel del nuevo frame. Creemos que esto va a afectar mucho en el tiempo de ejecuci\'on de los tres m\'etodos.
 
 \subsubsection{Resultados del experimento 4}
 \begin{figure}[ht]
@@ -63,4 +62,6 @@
 		\subfigure [Tiempos de ejecuci\'on variando la cantidad de frames intermedios] {\includegraphics[width=0.9\columnwidth]{imagenes/tiempos/graf4.png}}
 	\end{center}
 \end{figure}
-\par Al ver los resultados obtenidos nos sorprende que el orden de los tiempos de ejecuci\'on se mantenga lineal (sin contar algunos desniveles particulares), sobretodo tomando en cuenta que la cantidad de frames del video utilizado era solo de 200, y la cantidad de frames intermedios agregados la elevamos hasta 20480. 
+\par Tras realizar el experimento notamos que el aumento de la cantidad de frames intermedios se relaciona de forma lineal con el tiempo de ejecuci\'on. Analicemos un poco mas la situaci\'on:
+
+\par Supangamos que tomamos N como la cantidad de frames del video original y F como cantidad de frames intermedios a agregar. De esta forma al aplicar alguno de los m\'etodos se agregan F frames N-1 veces $\longrightarrow$ F*(N-1). Si aplicamos uno de los m\'etodo nuevamente, pero esta vez con F+1 frames intermedios, se agregar\'an F+1 frames N-1 veces $\longrightarrow$ (F+1)*(N-1) = F*(N-1) + (N-1). Con este razonamiento simple y sin entrar en detalles podemos convencernos de que al aumentar la cantidad de frames aumentamos de forma lineal la cantidad de operaciones a realizar (agregamos N-1 operaciones `agregar frame intermedio').
