@@ -1,5 +1,6 @@
-
+\par Los resultados cualitativos nos llevan a concluir que la Interpolaci\'on Lineal es preferible al m\'etodo de Splines C\'ubicos, debido a la traza m\'as sutil del primero.
 \par Los resultados cuantitativos muestran una ventaja del algoritmo de Interpolación Lineal por sobre los demás métodos, dejando como conclusión que no siempre el algoritmo con mayor complejidad es el que arroja mejores resultados. 
-\par Sin embargo, el algoritmo de Vecino Más Cercano, a pesar de ser de los que arrojan los peores resultados cuantitativos, podría llegar a generar videos más atractivos comparados con los otros métodos, produciendo el mismo efecto que hacen los archivos \texttt{.gif}. A veces, resulta más atractivo conseguir este tipo de videos libres de artifacts, aunque no posean el mismo efecto de una cámara slow motion.
-
-\par Desde un punto de vista más subjetivo, no recomendamos utilizar Splines cúbicos, debido a los errores visuales causados por \'este m\'etodo. Por otra parte, para mayor cantidad de frames intermedios, es más útil utilizar interpolaci\'on lineal por sobre vecino m\'as cercano, ya que este último a medida que aumenta la cantidad de frames a regenerar irá perdiendo el efecto de lentitud.
+\par Sin embargo, el algoritmo de Vecino Más Cercano, a pesar de ser de los que arrojan los peores resultados cuantitativos, podría llegar a generar videos más atractivos comparados con los otros métodos, produciendo el mismo efecto que hacen los archivos \texttt{.gif}. 
+A veces, resulta más atractivo conseguir este tipo de videos libres de artifacts y con transiciones limpias, aunque no posean el mismo efecto de una cámara slow motion.
+\par Desde un punto de vista más subjetivo, no recomendamos utilizar Splines cúbicos, debido a los errores visuales causados por \'este m\'etodo al cambiar las escenas.
+Por otra parte, para mayor cantidad de frames intermedios, es más útil utilizar interpolaci\'on lineal por sobre vecino m\'as cercano, ya que este último a medida que aumenta la cantidad de frames a regenerar irá perdiendo la fluidez, resultando en videos m\'as cortados que lineal.
