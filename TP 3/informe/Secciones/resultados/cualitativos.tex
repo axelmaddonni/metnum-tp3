@@ -27,7 +27,7 @@ Un claro ejemplo de estas trazas o ``fade-in''-``fade-out'' se puede observar en
 
 \FloatBarrier
 \begin{figure}[h]
-\caption{Traza en interpolacion lineal}
+\caption{Traza en interpolacion lineal - video: Tenis con 6 frames intermedios}
 \label{TenisTrazaLineal}
 \includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/TTL.png}
 \end{figure}
@@ -37,32 +37,19 @@ Un claro ejemplo de estas trazas o ``fade-in''-``fade-out'' se puede observar en
 \par Debido a esto, las trazas pueden tener un impacto incluso positivo en el video en lo que concierne a interpolaci\'on del movimiento, en especial con framerate alto y pocos frames intermedios.
 
 \subsubsubsection{Splines}
-\par En el m\'etodo de Splines se observan trazas similares a las de la interpolaci\'on lineal.
+\par En el m\'etodo de Splines se observan trazas similares a las de la interpolaci\'on lineal; la diferencia yace en c\'omo se ve el ``fade-in''-``fade-out''.
 Un ejemplo de tales trazas, para el mismo video que el de la imagen \ref{TenisTrazaLineal}, se encuentra en la figura \ref{TenisTrazaSplines}.
 
 \FloatBarrier
 \begin{figure}[h]
-\caption{Traza en Splines}
+\caption{Traza en Splines - video: Tenis con 6 frames intermedios, tama\~no de bloque 4}
 \label{TenisTrazaSplines}
 \includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/TTS.png}
 \end{figure}
 \FloatBarrier
 
-\par Sin embargo, en el caso de Splines, se toman 4 o m\'as frames de referencia, en vez de los meros 2 de interpolaci\'on lineal.
-Esto afecta las trazas, que en algunos casos pueden llegar a hacer un ``fade-in'' del objeto en movimiento a su posici\'on en varios frames de referencia a la vez.
-Con s\'olo dos frames, este efecto parece bastante natural, ya que los frames intermedios tienden al pr\'oximo frame de referencia; con m\'as frames se crea un artifact muy chocante ya que las trazas correspondientes a frames posteriores al pr\'oximo desaparecen al alcanzarlo.
-Un ejemplo de este artifact se puede ver claramente en la imagen \ref{TenisArtifactSplines}.
-
-\FloatBarrier
-\begin{figure}[h]
-\caption{Artifact en Splines}
-\label{TenisArtifactSplines}
-\includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/TAS.png}
-\end{figure}
-\FloatBarrier
-
-\par Finalmente, cabe destacar el impacto del par\'ametro de tama\~no de bloques en Splines en este artifact: a mayor tama\~no de bloques, mayor ocurrencia, y m\'as dr\'astico es su efecto.
-Concluimos que Splines siempre deber\'ia ser utilizado con el tama\~no m\'inimo de bloques (4).
+\par Cabe destacar que las trazas en Splines se ven con mayor claridad al incrementar el tama\~no de bloque.
+Se observa que esto detrae del efecto positivo mencionado previamente.
 
 \subsubsection{Cambio de Escena}
 \par Los componentes (en el sentido, de objetos, cuerpos, paisajes y dem\'as) de un video pueden pasar de un frame al otro esencialmente de tres maneras: 
@@ -80,44 +67,44 @@ De todas modos, observaremos tales formas como parte de nuestro an\'alisis cuali
 \subsubsubsection{Vecino m\'as cercano}
 \par Los frames intermedios a los de dos escenas distintas (es decir, los que representan tal cambio de escena) en este m\'etodo ser\'an copias del frame m\'as cercano, por lo que resultar\'an en una transici\'on ``limpia'', repentina, que pasa de una escena a la otra sin frames que pertenecen a ambas.
 
-\subsubsubsection{Lineal}
+\subsubsubsection{Lineal y Splines}
 \par El m\'etodo lineal resultar\'a en un ``fade-in''-``fade-out'' entre las escenas, con todos los frames intermedios pertenecientes a ambas.
 Un ejemplo de esta transici\'on se puede ver en la imagen \ref{BebesLinealTransicion}, que corresponde a un frame intermedio a dos escenas distintas (en la escena saliente se ve al beb\'e con mayor zoom, en la entrante con menor).
 
 \FloatBarrier
 \begin{figure}[h]
-\caption{Transicion Lineal}
+\caption{Transicion Lineal - video: Bebes con 6 frames intermedios}
 \label{BebesLinealTransicion}
 \includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/BLT.png}
 \end{figure}
 \FloatBarrier
 
-\subsubsubsection{Splines}
 \par El uso de Splines resulta en el mismo tipo de transici\'on que la interpolaci\'on lineal (ejemplo: figura \ref{BebesSplinesTransicion}).
+Nuevamente, la diferencia entre ambos yace en la intensidad de cada escena en el ``fade-in''-``fade-out''.
 
 \FloatBarrier
 \begin{figure}[h]
-\caption{Transicion en Splines}
+\caption{Transicion en Splines - video: Bebes con 6 frames intermedios, tama\~no de bloque 4}
 \label{BebesSplinesTransicion}
 \includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/BST.png}
 \end{figure}
 \FloatBarrier
 
-\par Una vez que se realiza la transici\'on entre escenas, la interpolaci\'on de los frames de la escena entrante no deber\'ia ser afectada por la escena saliente.
-Sin embargo, nuevamente entra en juego el hecho de que este m\'etodo emplea m\'as frames de referencia; en algunos casos esto no sucede, y se pueden observar artifacts como el de la imagen \ref{BebesSplinesArtifact}, que pertenece a un frame posterior a la transici\'on de escenas, pero en el cual se superpone (pero s\'olo por este frame) una imagen de la escena anterior. 
-En caso de que no se ve a primera vista, notar que en la cara del beb\'e se encuentra otra imagen de su cara, en negativo.
+\par Sin embargo, Splines utiliza varios frames de referencia, por lo que en algunos casos otra escena puede alterar frames que no son de transici\'on de una a otra.
+Esto resulta en artifacts, como el que se puede observar en la figura \ref{BebesSplinesArtifact}.
+Cabe destacar que la frecuencia y el efecto de este artifact incrementar al aumentar el tama\~no de bloque.
 
 \FloatBarrier
 \begin{figure}[h]
-\caption{Artifact de transicion en Splines}
+\caption{Artifact de transicion en Splines - video: Bebes con 6 frames intermedios, tama\~no de bloque 50}
 \label{BebesSplinesArtifact}
 \includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/BSA.png}
 \end{figure}
 \FloatBarrier
 
-\par Al igual que en el otro artifact de Splines detallado previamente, a mayor tama\~no de bloques, incrementa la frecuencia de este artifact, y su efecto.
-
 \subsubsection{Comparaci\'on de la calidad de los m\'etodos}
-\par En primer lugar, desde el punto de vista cualitativo, desaconsejamos el uso de la interpolaci\'on mediante Splines c\'ubicos, debido a los artifacts mencionados previamente.
-En lo concerniente a Vecino m\'as cercano y Lineal, la cuesti\'on es m\'as subjetiva.
-Por esto, no podemos concluir que ninguno de esos m\'etodos es intr\'insecamente superior, pero nuestra impresi\'on es que el efecto m\'as din\'amico logrado por el ``fade-in''-``fade-out'' de la interpolaci\'on lineal respecto del m\'as est\'atico de vecino m\'as cercano lo hace preferible, en especial al aumentar la cantidad de frames intermedios.
+\par En lo que concierne a Splines y Lineal contra Vecino m\'as cercano, observamos que el efecto de trazas presente en los primeros genera un efecto m\'as din\'amico y fluido en los videos, en contraposici\'on al efecto m\'as est\'atico de este \'ultimo.
+Si bien la decisi\'on de cu\'al es mejor es subjetiva, personalmente nos pareci\'o que en videos de movimiento, Splines y Lineal eran mejores.
+En videos que consisten mayoritariamente de cambios de escena (un slideshow de fotos, por ejemplo), depende de la opinion personal de cada uno con respecto al m\'etodo de transici\'on preferido.
+\par En lo que concierne a Splines y Lineal, observamos que la traza es m\'as visible (se nota m\'as desde el punto de vista conciente), y nos pareci\'o que era preferible la traza m\'as sutil de interpolaci\'on lineal.
+Esto, junto a los artifacts de transici\'on en Splines, nos llevan a recomendar la interpolaci\'on lineal por sobre este m\'etodo.
