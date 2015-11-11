@@ -1,0 +1,14 @@
+README
+
+Para ejecutar los tests es necesario descargar la carpeta tests del siguiente link:
+
+https://www.dropbox.com/sh/6ibxzwlib2cpen9/AACQ7YGMkdvdw2aFm06aM2DIa?dl=0
+
+La carpeta debe ser descargada al directorio /src.
+
+Se incluyen dos scripts para ejecutar los tests:
+
+El script test.sh toma como parámetro el video a testear (bebes, fideos, morocho, cupcake, tenis o perro) y genera los videos correspondientes con los 3 métodos (Vecino Mas cercano, lineal y splines) para framesInternos = 2, 4 y 6. Para el de splines lo hace con 3 variantes de tamaño de bloque: 4, 8 y 16.
+
+El script cuantitativos.sh toma como parámetro el video a testear (bebes, fideos, morocho, cupcake, tenis o perro) y la métrica (ecm o psnr). Genera archivos correspondientes a los resultados en el directorio:
+ /tests/[video]/[métrica]/.

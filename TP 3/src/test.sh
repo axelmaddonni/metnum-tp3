@@ -64,10 +64,30 @@ python textfileToVideo.py tests/$1/$1_Splines_FramesInt2_TamBloque16.out tests/$
 python textfileToVideo.py tests/$1/$1_Splines_FramesInt4_TamBloque16.out tests/$1/$1_Splines_FramesInt4_TamBloque16.avi
 python textfileToVideo.py tests/$1/$1_Splines_FramesInt6_TamBloque16.out tests/$1/$1_Splines_FramesInt6_TamBloque16.avi
 
+echo 'Testeando splines con bloques de 32'
+
+./main tests/$1/$1_FramesInt2.in tests/$1/$1_Splines_FramesInt2_TamBloque32.out 2 2 32
+./main tests/$1/$1_FramesInt4.in tests/$1/$1_Splines_FramesInt4_TamBloque32.out 2 4 32
+./main tests/$1/$1_FramesInt6.in tests/$1/$1_Splines_FramesInt6_TamBloque32.out 2 6 32
+
+python textfileToVideo.py tests/$1/$1_Splines_FramesInt2_TamBloque32.out tests/$1/$1_Splines_FramesInt2_TamBloque32.avi
+python textfileToVideo.py tests/$1/$1_Splines_FramesInt4_TamBloque32.out tests/$1/$1_Splines_FramesInt4_TamBloque32.avi
+python textfileToVideo.py tests/$1/$1_Splines_FramesInt6_TamBloque32.out tests/$1/$1_Splines_FramesInt6_TamBloque32.avi
+
+echo 'Testeando splines con bloques de 50'
+
+./main tests/$1/$1_FramesInt2.in tests/$1/$1_Splines_FramesInt2_TamBloque50.out 2 2 50
+./main tests/$1/$1_FramesInt4.in tests/$1/$1_Splines_FramesInt4_TamBloque50.out 2 4 50
+./main tests/$1/$1_FramesInt6.in tests/$1/$1_Splines_FramesInt6_TamBloque50.out 2 6 50
+
+python textfileToVideo.py tests/$1/$1_Splines_FramesInt2_TamBloque50.out tests/$1/$1_Splines_FramesInt2_TamBloque50.avi
+python textfileToVideo.py tests/$1/$1_Splines_FramesInt4_TamBloque50.out tests/$1/$1_Splines_FramesInt4_TamBloque50.avi
+python textfileToVideo.py tests/$1/$1_Splines_FramesInt6_TamBloque50.out tests/$1/$1_Splines_FramesInt6_TamBloque50.avi
+
 }
 
 
-if [ "$1" = "tenis" ] || [ "$1" = "morocho" ] || [ "$1" = "perro" ] || [ "$1" = "cupcake" ]
+if [ "$1" = "tenis" ] || [ "$1" = "morocho" ] || [ "$1" = "perro" ] || [ "$1" = "cupcake" ] || [ "$1" = "fideos" ] || [ "$1" = "bebes" ]
 	then 
 	test $1
 else 
