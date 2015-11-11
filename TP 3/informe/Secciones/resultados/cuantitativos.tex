@@ -34,12 +34,12 @@
 
 \begin{figure}[ht]
 	\begin{center}
-		\subfigure [Efectividad de los métodos según ECM] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp1.png}}
+		\subfigure [Efectividad de los métodos según ECM] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp1.jpg}}
 	\end{center}
 \end{figure}
 
 \par Se puede observar en el gráfico que el método que arroja mejores resultados con respecto al error cuadrático medio es el de Interpolación Lineal, a diferencia de lo que creíamos. Supusimos que splines por el mayor grado de complejidad de los cálculos y del polinomio interpolante daría como resultado videos más aproximados al original (ideal). Sucede que el algoritmo de splines divide los frames en bloques de como mínimo 4 frames para poder calcular el polinomio de grado 3 (4 variables), lo que hace que en varios de esos bloques los frames pertenezcan a tomas diferentes del video. Si los frames son de tomas diferentes, o los frames varían demasiado entre uno y otro, la función interpolante resultante tiene más error. Como el método lineal "divide" los frames en bloques de a 2, ya que realiza una función cada 2 frames, el impacto de este fenómeno es menor.
-\par Además, se puede observar en el gráfico el impacto del \textbf{tamaño de bloque }tomado para realizar los splines. Cuanto mayor sea el tamaño de bloque, mayor va a ser el error cometido. Esto se debe al fenómeno mencionado antes, ya que al ser mayor el bloque, hay más probabilidad de que haya frames de distintas tomas o muy variantes en el mismo bloque, generando una función interpolante de menor precisión. Concluimos entonces que la mejor opción para implementar Splines es tomar bloques de tamaño 4, que es el mínimo debido a la cantidad de condiciones a cumplir para generar un polinomio de grado 3. Notar que el método de Vecino más cercano, produce un error similar al de Splines con bloques de 16 frames, por lo que no tendría mucho sentido usar esa cantidad de frames por bloque.
+\par Además, se puede observar en el gráfico el impacto del \textbf{tamaño de bloque }tomado para realizar los splines. Variar el tamaño del bloque no modifica significativamente el error cometido, sin embargo, estimamos que al aumentar considerablemente el tamaño de los bloques se podrán observar errores visuales (más sobre esto en la sección Análisis Cualitativo).
 \par Se puede observar que el tamaño de los videos y la calidad no impacta significativamente en el error cuadrático medio. Sin embargo, el video \textit{perro}  tiene mayores valores de error en todos los algoritmos (ver Apéndice), debido a que es el único de los videos que fue grabado con un celular en movimiento.
 \par Por último, variar la calidad del video no trae grandes diferencias en términos cuantitativos, sin embargo, al observar los outputs, se nota una leve mejora del método de splines en términos cualitativos (se producen menos exploits). 
 

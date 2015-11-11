@@ -1,13 +1,13 @@
 #!/bin/bash
 declare -a cantidad_intermedios
 cantidad_intermedios[0]=5
-for I in {1..3}
+for I in {1..8}
 do
 	cantidad_intermedios[$I]=$((${cantidad_intermedios[$(($I-1))]}*2))
 done
-for I in {4..10}
+for I in {9..38}
 do
-	cantidad_intermedios[$I]=$((${cantidad_intermedios[$(($I-1))]}+40))
+	cantidad_intermedios[$I]=$((${cantidad_intermedios[$(($I-1))]}+640))
 done
 
 metodos=(0 1 2)
@@ -40,7 +40,7 @@ do
 		do
 			echo "$R/$cantidad_repeticiones"
 			tiempo_inicio=$(date +%s%N)/1000000
-			./../../../main img.vid img.sal $M $I 5
+			./../../../main img.vid img.sal $M 2 5
 			tiempo_fin=$(date +%s%N)/1000000
 			repeticiones[$R]=$((tiempo_fin - tiempo_inicio))
 			rm img.sal

@@ -50,12 +50,6 @@ void methodDispatch(int argc, char **argv)
             psnr(params, params2);
             break;
         }
-        case 6:
-        {
-            Parametros params(argc, argv);
-            splinesDobleLectura(params);
-            break;
-        }
         default:
         {
             cout << "Ese no es un metodo soportado.\n";

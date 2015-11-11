@@ -21,7 +21,7 @@ ECM promedio: 585.446
 Máximo error obtenido: 1610.4
 Calculando splines de bloque 4
 Frames internos = 2
-ECM promedio: 256.704
+ECM promedio: 246.349
 Máximo error obtenido: 1298.27
 Frames internos = 4
 ECM promedio: 488.344
@@ -31,8 +31,8 @@ ECM promedio: 664.815
 Máximo error obtenido: 2021.49
 Calculando splines de bloque 8
 Frames internos = 2
-ECM promedio: 286.059
-Máximo error obtenido: 1340.14
+ECM promedio: 247.379
+Máximo error obtenido: 1236.21
 Frames internos = 4
 ECM promedio: 530.388
 Máximo error obtenido: 1530.92
@@ -41,8 +41,8 @@ ECM promedio: 716.159
 Máximo error obtenido: 2808.73
 Calculando splines de bloque 16
 Frames internos = 2
-ECM promedio: 299.482
-Máximo error obtenido: 1913.96
+ECM promedio: 245.058
+Máximo error obtenido: 1236.21
 Frames internos = 4
 ECM promedio: 564.792
 Máximo error obtenido: 2764.92

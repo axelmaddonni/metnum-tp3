@@ -50,7 +50,7 @@ double psnr (Parametros &params, Parametros &params2){
 		//cargo Frame B
 		for (i=0; i < params.height; i++){
 			for (j=0; j < params.width; j++){
-			params2.input >> (*frameA)[i][j];
+			params2.input >> (*frameB)[i][j];
 			}
 		}
 

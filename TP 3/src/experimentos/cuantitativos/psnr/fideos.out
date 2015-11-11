@@ -21,7 +21,7 @@ PSNR promedio: 26.998
 Máximo psnr obtenido: 33.482
 Calculando splines de bloque 4
 Frames internos = 2
-PSNR promedio: 30.1813
+PSNR promedio: 30.4467
 Máximo psnr obtenido: 47.3838
 Frames internos = 4
 PSNR promedio: 27.7709
@@ -31,7 +31,7 @@ PSNR promedio: 26.5067
 Máximo psnr obtenido: 33.7696
 Calculando splines de bloque 8
 Frames internos = 2
-PSNR promedio: 29.8654
+PSNR promedio: 30.4448
 Máximo psnr obtenido: 47.3838
 Frames internos = 4
 PSNR promedio: 27.4856
@@ -41,7 +41,7 @@ PSNR promedio: 26.1694
 Máximo psnr obtenido: 33
 Calculando splines de bloque 16
 Frames internos = 2
-PSNR promedio: 29.6349
+PSNR promedio: 30.4266
 Máximo psnr obtenido: 47.3838
 Frames internos = 4
 PSNR promedio: 27.004
