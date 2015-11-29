@@ -48,8 +48,85 @@ Un ejemplo de tales trazas, para el mismo video que el de la imagen \ref{TenisTr
 \end{figure}
 \FloatBarrier
 
-\par Cabe destacar que las trazas en Splines se ven con mayor claridad al incrementar el tama\~no de bloque.
-Se observa que esto detrae del efecto positivo mencionado previamente.
+%\par Cabe destacar que las trazas en Splines se ven con mayor claridad al incrementar el tama\~no de bloque.
+%Se observa que esto detrae del efecto positivo mencionado previamente.
+\par Queremos comprender el efecto del tama\~no de bloques en la traza para Splines.
+Con este fin, analizamos distintos videos; en esta secci\'on nos concentraremos en dos: uno de Tenis (del cual fueron sacadas las im\'agenes previamente utilizadas \ref{TenisTrazaLineal} y \ref{TenisTrazaSplines}), y uno de cupcakes.
+Elegimos estos videos en particular ya que la pelota en el de Tenis es un objeto claro, isolado, contra un fondo negro, y por ende permite observar muy claramente la diferencia entre las trazas; 
+utilizamos el de cupcakes ya que presenta un caso m\'as general que Tenis, ya que hay muchos objetos en movimiento de muchos colores distintos, y el fondo tambi\'en var\'ia.
+Las siguientes im\'agenes son los frames intermedios entre dos posiciones consecutivas (en el video original) de la pelota en Tenis, para tama\~no de bloque 4 y 50, comparados lado a lado.
+
+\FloatBarrier
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S4F1.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S50F1.png}}
+\hfill
+\caption{Frame 1 - Tenis con 6 frames intermedios}
+\end{figure}
+
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S4F2.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S50F2.png}}
+\hfill
+\caption{Frame 2 - Tenis con 6 frames intermedios}
+\end{figure}
+
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S4F3.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S50F3.png}}
+\hfill
+\caption{Frame 3 - Tenis con 6 frames intermedios}
+\end{figure}
+
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S4F4.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S50F4.png}}
+\hfill
+\caption{Frame 4 - Tenis con 6 frames intermedios}
+\end{figure}
+
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S4F5.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S50F5.png}}
+\hfill
+\caption{Frame 5 - Tenis con 6 frames intermedios}
+\end{figure}
+
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S4F6.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/S50F6.png}}
+\hfill
+\caption{Frame 6 - Tenis con 6 frames intermedios}
+\end{figure}
+\FloatBarrier
+
+\par Se observa que la traza se describe con mayor intensidad (se ve m\'as claramente la pelota en su nueva posici\'on) al aumentar el tama\~no de bloques.
+Esto hace que la interpolaci\'on del movimiento resulte m\'as gradual para bajo tama\~no de bloques, mientras que para una alta cantidad de bloques hay una diferencia m\'as marcada entre un frame original y el primer frame intermedio consecuente, lo que tiene un impacto cualitativo negativo en la interpolaci\'on.
+\par Otro ejemplo de este efecto del tama\~no de bloques se puede ver en las siguientes im\'agenes, pertenecientes al video de cupcakes.
+Nuevamente se puede observar que la traza para mayor cantidad de bloques se manifiesta con mayor intensidad, incluso al variar los colores de los objetos en movimiento y el color del fondo.
+
+\FloatBarrier
+\begin{figure}
+\hfill
+\subfigure[Tama\~no de bloque 4]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/CS4.png}}
+\hfill
+\subfigure[Tama\~no de bloque 50]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/Frames/CS50.png}}
+\hfill
+\caption{Cupcakes con 6 frames intermedios}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Cambio de Escena}
 \par Los componentes (en el sentido, de objetos, cuerpos, paisajes y dem\'as) de un video pueden pasar de un frame al otro esencialmente de tres maneras: 
@@ -91,14 +168,36 @@ Nuevamente, la diferencia entre ambos yace en la intensidad de cada escena en el
 \FloatBarrier
 
 \par Sin embargo, Splines utiliza varios frames de referencia, por lo que en algunos casos otra escena puede alterar frames que no son de transici\'on de una a otra.
-Esto resulta en artifacts, como el que se puede observar en la figura \ref{BebesSplinesArtifact}.
-Cabe destacar que la frecuencia y el efecto de este artifact incrementar al aumentar el tama\~no de bloque.
+Por ejemplo, consideremos 4 frames de un video: $f_1,\ f_2,\ f_3\ y\ f_4$.
+Supongamos que $f_1$ y $f_2$ corresponden a una escena (llam\'emosla $S_1$), y que $f_3$ y $f_4$ corresponden a otra ($S_2$).
+Los frames intermedios entre $f_2\ y f_3$ (denomin\'emoslos $f_{2-3}$) son los de transici\'on entre $S_1 y S_2$, y son los que llevar\'an a cabo el cambio de escena.
+Sin embargo, los frames $f_{1-2}$ (utilizando la nomenclatura reci\'en detallada) pertenecen a una s\'ola escena ($S_1$), y por lo tanto esperamos que otras escenas ($S_2$, en este caso) no alteren los frames interpolados.
+Si esto sucede, se producen artifacts donde pedazos de im\'agenes de otras escenas aparecen y desaparecen a pesar de que no tengan relaci\'on con el resto de la imagen.
+Un ejemplo de esto se puede ver en la figura \ref{BebesSplinesArtifact}\footnote{En caso de que no se vea a primera vista el artifact, prestar particular atenci\'on a la frente y nariz del beb\'e, donde se puede observar una figura en negativo}.
+Utilizando la notaci\'on previamente detallada, $S_1$ ser\'ia el beb\'e sentado (en la figura \ref{BebeSplinesS1} se ve un frame de esta escena), $S_2$ el zoom a la cara del beb\'e (en la figura \ref{BebeSplinesS2} se ve un frame de esta escena) y la imagen del artifact es uno de los frames $f_{3-4}$.
+Al incrementar el tama\~no de bloque, incrementa la posibilidad de incurrir en este artifact, ya que se aumenta la cantidad de frames de una escena que son afectados por otra.
 
 \FloatBarrier
 \begin{figure}[h]
 \caption{Artifact de transicion en Splines - video: Bebes con 6 frames intermedios, tama\~no de bloque 50}
 \label{BebesSplinesArtifact}
 \includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/BSA.png}
+\end{figure}
+\FloatBarrier
+
+\FloatBarrier
+\begin{figure}[h]
+\caption{Escena 1 - video: Bebes con 6 frames intermedios, tama\~no de bloque 50}
+\label{BebesSplinesS1}
+\includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/BSS1.png}
+\end{figure}
+\FloatBarrier
+
+\FloatBarrier
+\begin{figure}[h]
+\caption{Escena 2 - video: Bebes con 6 frames intermedios, tama\~no de bloque 50}
+\label{BebesSplinesS2}
+\includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/BSS2.png}
 \end{figure}
 \FloatBarrier
 
