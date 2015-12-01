@@ -48,8 +48,18 @@ Un ejemplo de tales trazas, para el mismo video que el de la imagen \ref{TenisTr
 \end{figure}
 \FloatBarrier
 
-%\par Cabe destacar que las trazas en Splines se ven con mayor claridad al incrementar el tama\~no de bloque.
-%Se observa que esto detrae del efecto positivo mencionado previamente.
+\par Cabe destacar que el m\'etodo de Splines emplea varios frames en la interpolaci\'on, a diferencia de Lineal, por lo que en ciertos casos la traza puede describir a un objeto no s\'olo en un frame y el siguiente, pero en m\'ultiples frames consecutivos.
+Un tal caso se puede observar en la figura \ref{FideosSplinesTrazaArtifact}; en el video original, en la regi\'on del frame del cual extrajimos la imagen hay un s\'olo objeto cayendo, pero al interpolarlo se ven 4 trazas (dos con una tonalidad clara, dos con una oscura).
+Si bien este efecto puede pasar desapercibido con un framerate alto, se vuelve m\'as notable al reducirlo, y tiene un impacto negativo en la interpolaci\'on desde un punto de vista cualitativo.
+
+\FloatBarrier
+\begin{figure}[h]
+\caption{Traza en Splines - video: Fideos con 6 frames intermedios, tama\~no de bloque 50}
+\label{FideosSplinesTrazaArtifact}
+\includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/FSTA.png}
+\end{figure}
+\FloatBarrier
+
 \par Queremos comprender el efecto del tama\~no de bloques en la traza para Splines.
 Con este fin, analizamos distintos videos; en esta secci\'on nos concentraremos en dos: uno de Tenis (del cual fueron sacadas las im\'agenes previamente utilizadas \ref{TenisTrazaLineal} y \ref{TenisTrazaSplines}), y uno de cupcakes.
 Elegimos estos videos en particular ya que la pelota en el de Tenis es un objeto claro, isolado, contra un fondo negro, y por ende permite observar muy claramente la diferencia entre las trazas; 
@@ -205,5 +215,5 @@ Al incrementar el tama\~no de bloque, incrementa la posibilidad de incurrir en e
 \par En lo que concierne a Splines y Lineal contra Vecino m\'as cercano, observamos que el efecto de trazas presente en los primeros genera un efecto m\'as din\'amico y fluido en los videos, en contraposici\'on al efecto m\'as est\'atico de este \'ultimo.
 Si bien la decisi\'on de cu\'al es mejor es subjetiva, personalmente nos pareci\'o que en videos de movimiento, Splines y Lineal eran mejores.
 En videos que consisten mayoritariamente de cambios de escena (un slideshow de fotos, por ejemplo), depende de la opinion personal de cada uno con respecto al m\'etodo de transici\'on preferido.
-\par En lo que concierne a Splines y Lineal, observamos que la traza es m\'as visible (se nota m\'as desde el punto de vista conciente), y nos pareci\'o que era preferible la traza m\'as sutil de interpolaci\'on lineal.
+\par En lo que concierne a Splines y Lineal, observamos que la traza es m\'as visible (se nota m\'as desde el punto de vista consciente), y nos pareci\'o que era preferible la traza m\'as sutil de interpolaci\'on lineal.
 Esto, junto a los artifacts de transici\'on en Splines, nos llevan a recomendar la interpolaci\'on lineal por sobre este m\'etodo.
