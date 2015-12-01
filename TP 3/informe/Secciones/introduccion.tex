@@ -2,7 +2,7 @@
 
 \par Consideraremos a un video un conjunto de cuadros o \textit{frames} que al reproducirse rápidamente transmite el efecto de movimiento a partir de tener un buen \textit{frame rate}, es decir, una alta cantidad de cuadros por segundo. Para producir el efecto de cámara lenta sobre un video, generaremos más cuadros entre cada par de cuadros consecutivos del video original y reproduciremos el resultado a la misma velocidad que el original. Las im\'agenes correspondientes a cada cuadro est\'an conformadas por p\'ixeles. En particular, utilizaremos im\'agenes en escala de grises para disminuir los costos en tiempo necesarios para procesar los datos y simplificar la implementaci\'on; sin embargo, la misma idea puede ser utilizada para videos en color. 
 
-\par Lo que haremos será interpolar en el tiempo los valores de los pixeles para cada posición de la imagen, generando así una función interpolante, que permita la obtención de nuevos frames partiendo del conocimiento de un conjunto discreto de puntos. Se proponen tres métodos de interpolación explicados a continuación: Vecino más cercano, Interpolación Lineal e Interpolación por Splines.
+\par Lo que haremos será interpolar en el tiempo los valores de los p\'ixeles para cada posición de la imagen, generando así una función interpolante, que permita la obtención de nuevos frames partiendo del conocimiento de un conjunto discreto de puntos. Se proponen tres métodos de interpolación explicados a continuación: Vecino más cercano, Interpolación Lineal e Interpolación por Splines.
 
 \subsection{Vecino más cercano}
 
