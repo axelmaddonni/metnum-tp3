@@ -12,9 +12,10 @@
 \subsubsection{Experimentación con ECM y PSNR}
 
 \par Para calcular el ECM obtenido a partir de los videos generados con los algoritmos propuestos, implementamos tests que comparan frame a frame el video original ya en slow motion, con el video obtenido luego de eliminar frames intermedios y aplicar cada método para regenerar dichos frames. Es decir, si al video original le eliminamos 2 frames intermedios (utilizando la función \texttt{eliminarFrames}, ver Apéndice \ref{eliminarframes}), compararemos el video original con el video obtenido luego de aplicar cada uno de los algoritmos, tomando como parámetro la misma cantidad de frames intermedios que le habíamos eliminado al video en un principio, en este caso 2.
-\par Realizaremos esto para 6 videos diferentes, con distintas calidades y duraciones. Los videos elegidos como inputs se encuentran en slow motion originalmente, y muestran situaciones que consideramos interesantes para analizar resultados cuantitativos y cualitativos, como por ejemplo, una pelota de tenis volando o fideos cayendo lentamente, ya que se pueden apreciar las diferencias con los videos originales más claramente. Además, analizaremos los resultados según el tamaño y calidad del video, ya que algunos algoritmos podrían mejorar su rendimiento en dichos casos. Creemos que videos de mayor calidad generan resultados de mayor precisión.
+\par Realizaremos esto para 6 videos diferentes, con distintas calidades y duraciones, para ver si varía la efectividad de los métodos según estas características. Los videos elegidos como inputs se encuentran en slow motion originalmente, y muestran situaciones que consideramos interesantes para analizar resultados cuantitativos y cualitativos, como por ejemplo, una pelota de tenis volando o fideos cayendo lentamente, ya que se pueden apreciar las diferencias con los videos originales más claramente. Además, analizaremos los resultados según el tamaño y calidad del video, ya que algunos algoritmos podrían mejorar su rendimiento en dichos casos. Creemos que videos de mayor calidad generan resultados de mayor precisión.
 \par Los tests que generamos calculan el ECM para dichos inputs variando la cantidad de framesIntermedios eliminados al original (2, 4 o 6 frames) para cada algoritmo. Para el algoritmo de splines, a su vez, realiza el mismo cálculo tomando distintos tamaños de bloque (4, 8 o 16 frames por bloque). Con esto pretendemos observar cómo afectan estos parámetros cuantitativamente al resultado final. Bloques de splines de menor tamaño supondrían una mayor precisión debido a que los videos cambian de tomas rápidamente, y al prolongar el tamaño del bloque permite interpolar frames tomando como parámetros frames pertenecientes a distintas tomas, y por lo tanto generar resultados no deseados como imágenes transparentes entre una toma y otra. Estos \textit{artifacts} serán analizados con más detalle en la próxima sección de análisis cualitativo. Aquí nos limitaremos a analizar los resultados cuantitativos.
 \par A continuación una breve descripción de los videos de entrada que utilizamos para los tests: (de menor a mayor calidad)
+\begin{multicols}{2}
 \begin{itemize}
 \item \textit{cupcake} : $\#$frames = 252, tamaño 240x360
 \item \textit{perro} : $\#$frames = 252, tamaño 360x360
@@ -23,47 +24,99 @@
 \item \textit{bebes} : $\#$frames = 225, tamaño 544x1280
 \item \textit{fideos} : $\#$frames = 125, tamaño 720x1280
 \end{itemize}
+\end{multicols}
 
+
+\newpage
 \par  \textbf{En el Apéndice \ref{cuant} se puede encontrar una tabla con todos los valores obtenidos sobre el ECM promedio y los ECM máximos obtenidos por cada algoritmo para cada input. A continuación estudiaremos el comportamiento de cada método desde distintos enfoques.}
 
 \subsubsection{Resultados sobre ECM y PSNR}
 
 \subsubsubsection{Experimento 1: Efectividad de los métodos según ECM}
 
-\par Comparamos la efectividad de los métodos según el ECM promedio obtenido en cada uno de los inputs con 2 frames intermedios eliminados. Cuanto menor sea el error, consideraremos que el método es más efectivo cuantitativamente. Dejaremos afuera el input \textit{perro} para que el gráfico de barras sea más claro, ya que son valores muy altos comparados a los demás.
+\par Comparamos la efectividad de los métodos según el ECM promedio obtenido en cada uno de los inputs con 2 frames intermedios eliminados. Cuanto menor sea el error, consideraremos que el método es más efectivo cuantitativamente. 
+\par En los gráficos no se muestran los resultados para el input \textit{perro} para una mejor lectura de los datos, debido a que son valores muy altos comparados con los de los demás inputs. 
 
 \begin{figure}[ht]
 	\begin{center}
-		\subfigure [Efectividad de los métodos según ECM] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp1.jpg}}
+		\subfigure [Efectividad de los métodos para cada video según ECM] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp1.png}}
 	\end{center}
 \end{figure}
 
-\par Se puede observar en el gráfico que el método que arroja mejores resultados con respecto al error cuadrático medio es el de Interpolación Lineal, a diferencia de lo que creíamos. Supusimos que splines por el mayor grado de complejidad de los cálculos y del polinomio interpolante daría como resultado videos más aproximados al original (ideal). Sucede que el algoritmo de splines divide los frames en bloques de como mínimo 4 frames para poder calcular el polinomio de grado 3 (4 variables), lo que hace que en varios de esos bloques los frames pertenezcan a tomas diferentes del video. Si los frames son de tomas diferentes, o los frames varían demasiado entre uno y otro, la función interpolante resultante tiene más error. Como el método lineal "divide" los frames en bloques de a 2, ya que realiza una función cada 2 frames, el impacto de este fenómeno es menor.
-\par Además, se puede observar en el gráfico el impacto del \textbf{tamaño de bloque }tomado para realizar los splines. Variar el tamaño del bloque no modifica significativamente el error cometido, sin embargo, estimamos que al aumentar considerablemente el tamaño de los bloques se podrán observar errores visuales (más sobre esto en la sección Análisis Cualitativo).
-\par Se puede observar que el tamaño de los videos y la calidad no impacta significativamente en el error cuadrático medio. Sin embargo, el video \textit{perro}  tiene mayores valores de error en todos los algoritmos (ver Apéndice), debido a que es el único de los videos que fue grabado con un celular en movimiento.
-\par Por último, variar la calidad del video no trae grandes diferencias en términos cuantitativos, sin embargo, al observar los outputs, se nota una leve mejora del método de splines en términos cualitativos (se producen menos exploits). 
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [Efectividad de los métodos para cada video según ECM] {\includegraphics[width=0.6\columnwidth]{imagenes/cuantitativos/exp1prom.png}}
+	\end{center}
+\end{figure}
 
-\subsubsubsection{Experimento 2: Impacto del parámetro Frames Internos eliminados}
+\begin{center}
+\begin{tabular}{| c | c | c |}
+\hline
+\multicolumn{3}{|c|}{Valores obtenidos para el video \textbf{perro} con FI=2}  \\
+\hline
+Vecino más cercano & Interpolación Lineal & Splines de tam. bloque 4  \\ 
+\hline
+314,75	& 229,528	&	246,349	\\
+\hline
+\end{tabular}
+\end{center}
+
+\par Se puede observar en el gráfico que el método que arroja mejores resultados con respecto al error cuadrático medio es el de Interpolación Lineal, a diferencia de lo que creíamos. Supusimos que splines por el mayor grado de complejidad de los cálculos y del polinomio interpolante daría como resultado videos más aproximados al original (ideal). Lo que podría estar pasando es que el algoritmo de splines divide los frames en bloques de como mínimo 4 frames para poder calcular el polinomio de grado 3 (4 variables), lo que hace que en varios de esos bloques los frames pertenezcan a tomas diferentes del video. Si los frames son de tomas diferentes, o los frames varían demasiado entre uno y otro, la función interpolante resultante tiene más error. Como el método lineal "divide" los frames en bloques de a 2, ya que realiza una función cada 2 frames, el impacto de este fenómeno es menor.
+\par Por ejemplo, el gráfico muestra para el caso del video \textit{bebes} un error cometido mayor en relación a los demás. Este video es el que tiene mayor cantidad de escenas en un corto período de tiempo, y por lo tanto se ve más afectado por el fenómeno mencionado.
+\par Además, se ve que a pesar de que variamos la calidad y el tamaño de los videos la proporción entre el error cometido por cada método se mantiene para todos los inputs. Claramente el error varía entre cada video debido a que son diferentes. Sin embargo, el video \textit{perro} arroja mayores valores de error en todos los algoritmos (ver Apéndice), debido quizás a que es el único de los videos que fue grabado con un celular en movimiento, aunque el orden de efectividad entre los tres métodos sigue siendo el mismo.
+
+
+\subsubsubsection{Experimento 2: Efectividad del método de Splines variando el tamaño de bloque}
+
+\par Analizaremos la influencia del tamaño de los bloques tomados para calcular los Splines en el tercer método observando el error obtenido para cada video y el promedio entre todos. Tomaremos 2 frames Intermedios a regenerar para todos los casos.
+
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [ECM obtenido con el método de Splines variando el tamaño de bloque para cada video] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp2.png}}
+	\end{center}
+\end{figure}
+
+\par Se puede observar en el gráfico el impacto del tamaño de bloque tomado para realizar los splines. Variar el tamaño del bloque no modifica significativamente el error cometido, sin embargo, estimamos que al aumentar considerablemente la cantidad  de frames Intermedios a regenerar, incrementando el tamaño los bloques se podrán observar errores visuales. 
+\par El siguiente gráfico muestra el promedio de los errores obtenidos entre los videos para cada tamaño de bloque tomando distintos valores de frames intermedios a regenerar:
+
+\bigskip
+
+[FALTA INSERTAR UN GRÁFICO]
+
+\bigskip
+
+\par Finalmente, aumentando los frames intermedios a regenerar sí se ven diferencias en el error para los distintos tamaños de bloque. Acá se manifiesta el fenómeno que predijimos en el experimento anterior. Al aumentar el tamaño de bloque puede producir errores ya que los frames interpolados pueden ser muy diferentes a los que queremos regenerar, en especial, si aumentamos la brecha entre cada uno. Por suerte, como vimos en la sección de Análisis de Tiempos de ejecución, el tamaño de bloques no influye significativamente en la complejidad temporal del algoritmo de splines.
+
+\subsubsubsection{Experimento 3: Impacto del parámetro Frames Internos eliminados}
 
 \par Usando los mismos inputs, correremos los métodos tomando distintas cantidades de frames internos eliminados y compararemos los resultados. Aumentar la cantidad de frames internos a regenerar, debería aumentar el error cuadrático medio.
+\par Los resultados mostrados en el gráfico corresponden al promedio entre los de todos los videos:
 
 \begin{figure}[ht]
 	\begin{center}
-		\subfigure [Efectividad de los métodos según frames intermedios eliminados] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp2.png}}
+		\subfigure [Efectividad de los métodos según frames intermedios eliminados] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp3.png}}
 	\end{center}
 \end{figure}
+
+\newpage
 
 \par En el gráfico se muestran los valores obtenidos al calcular el promedio de los ECM de cada input generados por cada método, según cuál fue la cantidad de frames internos pasada por parámetro.
 \par Efectivamente, aumentar framesIntermedios aumenta el error cuadrático medio. Se puede ver en el gráfico que lo hace linealmente, en todos los métodos. Esto se debe a que es mayor la cantidad de frames que se obtienen usando las funciones interpolantes, aumentando el error producido.
 
-\subsubsubsection{Experimento 3: Efectividad de los métodos según PSNR}
+\subsubsubsection{Experimento 4: Efectividad de los métodos según PSNR}
 
 \par El PSNR es la métrica utilizada con mayor frecuencia como medida de la calidad objetiva de video. Sin embargo, a causa del comportamiento nolineal del sistema visual humano los valores de PSNR no poseen una perfecta correlación con la calidad visual percibida. 
-\par Análogamente, calculamos los PSNR promedio obtenidos con cada algoritmo para los mismos inputs mencionados anteriormente:
+\par Análogamente, calculamos los PSNR promedio obtenidos con cada algoritmo para los mismos inputs mencionados anteriormente. El siguiente gráfico muestra un promedio entre los resultados obtenidos de cada video:
 
 \begin{figure}[ht]
 	\begin{center}
-		\subfigure [Efectividad de los métodos según PSNR] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp3.png}}
+		\subfigure [Efectividad de los métodos según PSNR] {\includegraphics[width=0.9\columnwidth]{imagenes/cuantitativos/exp4.png}}
+	\end{center}
+\end{figure}
+
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [Efectividad promedio de los métodos según PSNR] {\includegraphics[width=0.6\columnwidth]{imagenes/cuantitativos/exp4prom.png}}
 	\end{center}
 \end{figure}
 
