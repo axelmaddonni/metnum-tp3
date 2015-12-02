@@ -76,16 +76,16 @@ Vecino más cercano & Interpolación Lineal & Splines de tam. bloque 4  \\
 	\end{center}
 \end{figure}
 
-\par Se puede observar en el gráfico el impacto del tamaño de bloque tomado para realizar los splines. Variar el tamaño del bloque no modifica significativamente el error cometido, sin embargo, estimamos que al aumentar considerablemente la cantidad  de frames Intermedios a regenerar, incrementando el tamaño los bloques se podrán observar errores visuales. 
-\par El siguiente gráfico muestra el promedio de los errores obtenidos entre los videos para cada tamaño de bloque tomando distintos valores de frames intermedios a regenerar:
+\par Se puede observar en el gráfico el impacto del tamaño de bloque tomado para realizar los splines. Variar el tamaño del bloque no modifica significativamente el error cometido, sin embargo, al utilizar bloques de tamaño más pequeño, el algoritmo ocupa menos espacio en memoria. Por lo que concluimos que es mejor, solamente en términos de complejidad espacial, utilizar tamaño de bloque mínimo.
 
-\bigskip
-
-[FALTA INSERTAR UN GRÁFICO]
-
-\bigskip
-
-\par Finalmente, aumentando los frames intermedios a regenerar sí se ven diferencias en el error para los distintos tamaños de bloque. Acá se manifiesta el fenómeno que predijimos en el experimento anterior. Al aumentar el tamaño de bloque puede producir errores ya que los frames interpolados pueden ser muy diferentes a los que queremos regenerar, en especial, si aumentamos la brecha entre cada uno. Por suerte, como vimos en la sección de Análisis de Tiempos de ejecución, el tamaño de bloques no influye significativamente en la complejidad temporal del algoritmo de splines.
+% El experimento que no fue...
+%\bigskip
+%
+%[FALTA INSERTAR UN GRÁFICO]
+%
+%\bigskip
+%
+%\par Finalmente, a diferencia de nuestra estimación, concluimos que aumentando los frames intermedios a regenerar tampoco se producen diferencias en el error para los distintos tamaños de bloque.
 
 \subsubsubsection{Experimento 3: Impacto del parámetro Frames Internos eliminados}
 
@@ -98,10 +98,11 @@ Vecino más cercano & Interpolación Lineal & Splines de tam. bloque 4  \\
 	\end{center}
 \end{figure}
 
-\newpage
 
 \par En el gráfico se muestran los valores obtenidos al calcular el promedio de los ECM de cada input generados por cada método, según cuál fue la cantidad de frames internos pasada por parámetro.
 \par Efectivamente, aumentar framesIntermedios aumenta el error cuadrático medio. Se puede ver en el gráfico que lo hace linealmente, en todos los métodos. Esto se debe a que es mayor la cantidad de frames que se obtienen usando las funciones interpolantes, aumentando el error producido.
+
+\newpage
 
 \subsubsubsection{Experimento 4: Efectividad de los métodos según PSNR}
 
@@ -121,8 +122,6 @@ Vecino más cercano & Interpolación Lineal & Splines de tam. bloque 4  \\
 \end{figure}
 
 \bigskip
-
-\newpage
 
 \par Como era de esperar, los resultados se corresponden con los obtenidos a partir de comparar los ECM producidos por cada algoritmo. Por definición de PSNR, cuanto menor sea el error, mayor será el PSNR y por lo tanto mejor la calidad.
 \par  Interpolación lineal es el método con mayor efectividad en términos cuantitativos.
