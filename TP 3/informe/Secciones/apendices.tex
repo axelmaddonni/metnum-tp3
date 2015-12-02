@@ -156,4 +156,58 @@ Splines (tamBloque=4) & 6 & 29.7734 &  20.0804 & 30.7256 & 33.4113  & 31.4074 & 
 \hline
 \end{tabular}
 
-\bigskip
+\newpage
+
+\subsection{Ap\'endice C: Correctitud de los algoritmos de interpolaci\'on}
+
+\par Para determinar la correctitud de los algoritmos que utilizamos, en primer lugar empleamos tests que consisten en videos generados por nosotros, cuyas interpolaciones calculamos previamente a mano.
+De esta forma, conocemos el output que deber\'ian devolver los distintos algoritmos y podemos ver si nuestra implementaci\'on es correcta con respecto a esos tests.
+A continuaci\'on incluimos los dos tests m\'as simples que utilizamos.
+
+\caption{Primer test}
+\begin{verbatim}
+4
+2 2
+60
+10 10
+10 10
+40 40
+40 40
+70 70
+70 70
+100 100
+100 100
+\end{verbatim}
+
+\caption{Segundo test}
+\begin{verbatim}
+6
+1 2
+60
+10 10
+20 20
+40 40
+70 70
+90 90
+40 40
+\end{verbatim}
+
+\par Ya que nuestra implementaci\'on pasaba todos nuestos tests, corrimos los experimentos que hab\'iamos planteado.
+Los videos que utilizaban interpolaci\'on mediante Splines pose\'ian artifacts muy significativos, en especial al aumentar el tama\~no de bloque; en la figura \ref{TenisSplineArtifact} se puede observar un ejemplo.
+
+\FloatBarrier
+\begin{figure}[h]
+\begin{center}
+\caption{Artifact en implementacion inicial de Splines}
+\label{TenisSplineArtifact}
+\includegraphics[width=0.9\columnwidth]{imagenes/cualitativos/TAS.png}
+\end{center}
+\end{figure}
+\FloatBarrier
+
+\par Si bien la presencia de este tipo de artifacts no implica necesariamente un error en los algoritmos, nos llam\'o la atenci\'on.
+Revisamos nuestros tests y notamos que no contemplamos en ninguno ciertos casos donde la cantidad de frames no es divisible por el tama\~no de bloques.
+Agregamos tests que cubran estos casos y efectivamente, nuestra implementaci\'on de Splines no los pasaba.
+Repasamos nuestro c\'odigo, cotejando con bibliograf\'ia de la materia\cite{Burden}, y notamos una discrepancia;
+al arreglar el error, los tests pasaban y desapareci\'o el artifact detallado previamente.
+Debido a esto, consideramos la implementaci\'on correcta.
