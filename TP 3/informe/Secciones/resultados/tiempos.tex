@@ -1,5 +1,5 @@
 \subsubsection{Experimento 1: Efecto de la variaci\'on de colores}
-\par Para empezar con la experimentaci\'on relacionada a los tiempos de ejecuci\'on de los distintos m\'etodos correremos los distintos m\'etodos sobre un video con colores constantes y otro video con colores variables y compararemos los resultados obtenidos. Esto nos va a servir a la hora de llevar a cabo otros experimentos, porque si los tiempos son similares entre un video y otro significa que los colores que elijamos para los distintos videos no van a influirnos en los tiempos de ejecuci\'on.
+\par Para empezar con la experimentaci\'on relacionada a tiempos de ejecuci\'on correremos los distintos m\'etodos sobre un video con colores constantes y otro con colores variables y compararemos los resultados obtenidos. Esto nos va a servir a la hora de llevar a cabo otros experimentos, porque si los tiempos son similares entre un video y otro significa que los colores que elijamos para los distintos videos no van a influirnos en los tiempos de ejecuci\'on.
 
 \par Vamos a crear un video que tiene resoluci\'on de 10px x 10px con un color fijo constante y otro video, de la misma resoluci\'on, pero con colores que oscilan de forma ordenada entre el blanco, el negro y sus tonos intermedios. Tomaremos bloques de 5 frames (podr\'iamos haber elegido cualquier n\'umero) y agregaremos 2 frames intermedios entre cada frame del video de entrada.
 
@@ -16,11 +16,11 @@
 
 
 \par Como podemos observar en los gr\'aficos, los m\'etodos se comportan de la misma forma con ambas im\'agenes. Se notan diferencias en algunos momentos del m\'etodo del vecino mas cercano, pero manteniendo el mismo orden. No nos van a preocupar mucho estas diferencias, pero si las tendremos en cuenta de aqu\'i en adelante.
-\par Luego de este experimento podemos asumir que el cambio de colores pr\'acticamente no va a influir en los tiempos de ejecuci\'on. Ahora s\'i' podemos continuar con la experimentaci\'on teniendo en claro que ocurre con los colores.
+\par Luego de este experimento podemos asumir que el cambio de colores pr\'acticamente no va a influir en los tiempos de ejecuci\'on. Ahora s\'i podemos continuar con la experimentaci\'on teniendo en claro que ocurre con los colores.
 
 
 \subsubsection{Experimento 2: Tiempos de ejecucí\'on vs Cantidad de Frames}
-\par En este experimento vamos a comparar el tiempo de ejecuci\'on de los diferentes m\'etodos al aumentar la cantidad de frames de un video y tratar de determinar el orden de los mismos. Esper\'abamos que el orden del m\'etodo de Splines por bloques sea mayor, pero eniendo en cuenta lo visto en el Experimento 1 estamos mas cerca de creer que se comportan de forma lineal. Igualmente queremos llevar a cabo este experimento para abarcar cantidades mayores y sacarnos las dudas.
+\par En este experimento vamos a comparar el tiempo de ejecuci\'on de los diferentes m\'etodos al aumentar la cantidad de frames de un video y tratar de determinar el orden de los mismos. Esper\'abamos que el orden del m\'etodo de Splines por bloques sea mayor, teniendo pero en cuenta lo visto en el Experimento 1 estamos mas cerca de creer que se comportan de forma lineal. Igualmente queremos llevar a cabo este experimento para abarcar cantidades mayores y sacarnos las dudas.
 
 \par Para llevar a cabo el experimento vamos a crear videos con patrones de im\'agenes repetidos (tomando en consideraci\'on esos pequeños cambios que vimos en el experimento anterior) manteniendo el mismo ancho y alto de im\'agenes y cantidad de frames en aumento. Correremos los m\'etodos con un valor de frames intermedios fijo para enfocarnos solo en la cantidad de frames.
 
@@ -59,9 +59,13 @@
 \subsubsubsection{Resultados del experimento 4}
 \begin{figure}[ht]
 	\begin{center}
-		\subfigure [Tiempos de ejecuci\'on variando la cantidad de frames intermedios] {\includegraphics[width=0.9\columnwidth]{imagenes/tiempos/graf4.png}}
+		\subfigure [M\'etodo del Vecino mas Cercano] {\includegraphics[width=0.9\columnwidth]{imagenes/tiempos/exp4_cercano.png}}
+		\subfigure [M\'etodo Lineal] {\includegraphics[width=0.49\columnwidth]{imagenes/tiempos/exp4_lineal.png}}
+		\subfigure [M\'etodo de Splines Por Bloques] {\includegraphics[width=0.49\columnwidth]{imagenes/tiempos/exp4_splines.png}}
 	\end{center}
 \end{figure}
 \par Tras realizar el experimento notamos que el aumento de la cantidad de frames intermedios se relaciona de forma lineal con el tiempo de ejecuci\'on. Analicemos un poco mas la situaci\'on:
+
+\par Podemos ver en el gr\'afico el comportamiento de los m\'etodos cuando se aumentan los frames intermedios. En todos los casos el \'orden es lineal, variando por su constante.
 
 \par Supangamos que tomamos N como la cantidad de frames del video original y F como cantidad de frames intermedios a agregar. De esta forma al aplicar alguno de los m\'etodos se agregan F frames N-1 veces $\longrightarrow$ F*(N-1). Si aplicamos uno de los m\'etodo nuevamente, pero esta vez con F+1 frames intermedios, se agregar\'an F+1 frames N-1 veces $\longrightarrow$ (F+1)*(N-1) = F*(N-1) + (N-1). Con este razonamiento simple y sin entrar en detalles podemos convencernos de que al aumentar la cantidad de frames aumentamos de forma lineal la cantidad de operaciones a realizar (agregamos N-1 operaciones `agregar frame intermedio').
