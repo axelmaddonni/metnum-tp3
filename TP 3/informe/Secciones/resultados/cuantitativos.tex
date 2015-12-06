@@ -12,19 +12,8 @@
 \subsubsection{Experimentación con ECM y PSNR}
 
 \par Para calcular el ECM obtenido a partir de los videos generados con los algoritmos propuestos, implementamos tests que comparan frame a frame el video original ya en slow motion, con el video obtenido luego de eliminar frames intermedios y aplicar cada método para regenerar dichos frames. Es decir, si al video original le eliminamos 2 frames intermedios (utilizando la función \texttt{eliminarFrames}, ver Apéndice \ref{eliminarframes}), compararemos el video original con el video obtenido luego de aplicar cada uno de los algoritmos, tomando como parámetro la misma cantidad de frames intermedios que le habíamos eliminado al video en un principio, en este caso 2.
-\par Realizaremos esto para 6 videos diferentes, con distintas calidades y duraciones, para ver si varía la efectividad de los métodos según estas características. Los videos elegidos como inputs se encuentran en slow motion originalmente, y muestran situaciones que consideramos interesantes para analizar resultados cuantitativos y cualitativos, como por ejemplo, una pelota de tenis volando o fideos cayendo lentamente, ya que se pueden apreciar las diferencias con los videos originales más claramente. Además, analizaremos los resultados según el tamaño y calidad del video, ya que algunos algoritmos podrían mejorar su rendimiento en dichos casos. Creemos que videos de mayor calidad generan resultados de mayor precisión.
-\par Los tests que generamos calculan el ECM para dichos inputs variando la cantidad de framesIntermedios eliminados al original (2, 4 o 6 frames) para cada algoritmo. Para el algoritmo de splines, a su vez, realiza el mismo cálculo tomando distintos tamaños de bloque (4, 8 o 16 frames por bloque). Con esto pretendemos observar cómo afectan estos parámetros cuantitativamente al resultado final. Bloques de splines de menor tamaño supondrían una mayor precisión debido a que los videos cambian de tomas rápidamente, y al prolongar el tamaño del bloque permite interpolar frames tomando como parámetros frames pertenecientes a distintas tomas, y por lo tanto generar resultados no deseados como imágenes transparentes entre una toma y otra. Estos \textit{artifacts} serán analizados con más detalle en la próxima sección de análisis cualitativo. Aquí nos limitaremos a analizar los resultados cuantitativos.
-\par A continuación una breve descripción de los videos de entrada que utilizamos para los tests: (de menor a mayor calidad)
-\begin{multicols}{2}
-\begin{itemize}
-\item \textit{cupcake} : $\#$frames = 252, tamaño 240x360
-\item \textit{perro} : $\#$frames = 252, tamaño 360x360
-\item \textit{morocho} : $\#$frames = 452, tamaño 360x360
-\item \textit{tenis} : $\#$frames = 450, tamaño 240x426
-\item \textit{bebes} : $\#$frames = 225, tamaño 544x1280
-\item \textit{fideos} : $\#$frames = 125, tamaño 720x1280
-\end{itemize}
-\end{multicols}
+
+\par Los tests que generamos calculan el ECM para los 6 videos tomados como inputs variando la cantidad de framesIntermedios eliminados al original (2, 4 o 6 frames) para cada algoritmo. Para el algoritmo de splines, a su vez, realiza el mismo cálculo tomando distintos tamaños de bloque (4, 8 o 16 frames por bloque). Con esto pretendemos observar cómo afectan estos parámetros cuantitativamente al resultado final. Bloques de splines de menor tamaño supondrían una mayor precisión debido a que los videos cambian de tomas rápidamente, y al prolongar el tamaño del bloque permite interpolar frames tomando como parámetros frames pertenecientes a distintas tomas, y por lo tanto generar resultados no deseados como imágenes transparentes entre una toma y otra. Estos \textit{artifacts} serán analizados con más detalle en la próxima sección de análisis cualitativo. Aquí nos limitaremos a analizar los resultados cuantitativos. Analizaremos los resultados según el tamaño y calidad del video, ya que algunos algoritmos podrían mejorar su rendimiento en dichos casos. Creemos que videos de mayor calidad generan resultados de mayor precisión.
 
 
 \newpage

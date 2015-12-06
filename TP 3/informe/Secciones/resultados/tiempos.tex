@@ -20,10 +20,9 @@
 
 
 \subsubsection{Experimento 2: Tiempos de ejecucí\'on vs Cantidad de Frames}
-\par En este experimento vamos a comparar el tiempo de ejecuci\'on de los diferentes m\'etodos al aumentar la cantidad de frames de un video y tratar de determinar el orden de los mismos. Esper\'abamos que el orden del m\'etodo de Splines por bloques sea mayor, teniendo pero en cuenta lo visto en el Experimento 1 estamos mas cerca de creer que se comportan de forma lineal. Igualmente queremos llevar a cabo este experimento para abarcar cantidades mayores y sacarnos las dudas.
+\par En este experimento vamos a comparar el tiempo de ejecuci\'on de los diferentes m\'etodos al aumentar la cantidad de frames de un video y tratar de determinar el orden de los mismos.
 
-\par Para llevar a cabo el experimento vamos a crear videos con patrones de im\'agenes repetidos (tomando en consideraci\'on esos pequeños cambios que vimos en el experimento anterior) manteniendo el mismo ancho y alto de im\'agenes y cantidad de frames en aumento. Correremos los m\'etodos con un valor de frames intermedios fijo para enfocarnos solo en la cantidad de frames.
-
+\par Para llevar a cabo el experimento vamos a crear videos con patrones de im\'agenes repetidos (tomando en consideraci\'on esos pequeños cambios que vimos en el experimento anterior) manteniendo el mismo ancho y alto de im\'agenes y cantidad de frames en aumento. La idea es fijar las variables de ancho (10px), alto (10px), variacion de colores (con un generador de patrones repetidos), frames intermedios (2) y tama~no de bloques (5)(para el caso del m\'etodo de Splines) para que no nos influyan en las mediciones y poder enfocarnos en la canidad de frames.
 
 \subsubsubsection{Resultados del experimento 2}
 \begin{figure}[ht]
@@ -33,8 +32,19 @@
 \end{figure}
 \par Luego de realizar el experimento podemos creer que el tiempo de ejecuci\'on de los tres m\'etodos es de orden lineal. Podemos notar que los Splines por Bloques se mantiene siempre por encima de los otros, pero mantienen su forma lineal. Mas adelante veremos las diferencias de calidad entre los m\'etodos y tendremos que tener en cuenta esta igualdad de orden, ya que no es tan grande como esper\'abamos en un principio. 
 
-
-
+\paragraph{Cambios de inputs de entrada:}
+De aquí en adelante realizaremos experimentos sobre 6 videos reales, con distintas calidades y duraciones. Los videos elegidos como inputs se encuentran en slow motion originalmente, y muestran situaciones que consideramos interesantes para analizar resultados cuantitativos y cualitativos, como por ejemplo, una pelota de tenis volando o fideos cayendo lentamente, ya que se pueden apreciar las diferencias con los videos originales más claramente.
+\par A continuación una breve descripción de los videos de entrada que utilizamos para los tests: (de menor a mayor calidad)
+\begin{multicols}{2}
+\begin{itemize}
+\item \textit{cupcake} : $\#$frames = 252, tamaño 240x360
+\item \textit{perro} : $\#$frames = 252, tamaño 360x360
+\item \textit{morocho} : $\#$frames = 452, tamaño 360x360
+\item \textit{tenis} : $\#$frames = 450, tamaño 240x426
+\item \textit{bebes} : $\#$frames = 225, tamaño 544x1280
+\item \textit{fideos} : $\#$frames = 125, tamaño 720x1280
+\end{itemize}
+\end{multicols}
 
 
 \subsubsection{Experimento 3: Tiempos de ejecucí\'on vs Tama\~no de Bloques}
@@ -55,6 +65,7 @@
 
 \subsubsection{Experimento 4: Tiempos de ejecucí\'on vs Cantidad de frames intermedios}
 \par Vamos a observar como se comportan los m\'etodos al variar la cantidad de frames que se desean agregar. A pesar de que no se hacen muchos pasos extra para agregar un frame intermedio y solo se realiza una ecuaci\'on, esta ecuaci\'on se repite para cada pixel del nuevo frame. Creemos que esto va a afectar mucho en el tiempo de ejecuci\'on de los tres m\'etodos.
+\par Correremos los distintos m\'etodos sobre los 6 videos antes mencionados aumentando la cantidad de frames intermedios y observaremos como se comportan seg\'un sus diferentes caracter\'isticas.
 
 \subsubsubsection{Resultados del experimento 4}
 \begin{figure}[ht]
@@ -64,6 +75,10 @@
 		\subfigure [M\'etodo de Splines Por Bloques] {\includegraphics[width=0.49\columnwidth]{imagenes/tiempos/exp4_splines.png}}
 	\end{center}
 \end{figure}
+
+\par Al ver los resultados lo primero que notamos en un \'orden similar y lineal entre los videos Cupcake, Tenis, Perro, Morocho, mientras que los videos Bebes y Fideos 
+
+
 \par Tras realizar el experimento notamos que el aumento de la cantidad de frames intermedios se relaciona de forma lineal con el tiempo de ejecuci\'on. Analicemos un poco mas la situaci\'on:
 
 \par Podemos ver en el gr\'afico el comportamiento de los m\'etodos cuando se aumentan los frames intermedios. En todos los casos el \'orden es lineal, variando por su constante.
