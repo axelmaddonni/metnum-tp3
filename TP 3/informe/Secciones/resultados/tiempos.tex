@@ -48,15 +48,14 @@ De aquí en adelante realizaremos experimentos sobre 6 videos reales, con distin
 
 
 \subsubsection{Experimento 3: Tiempos de ejecucí\'on vs Tama\~no de Bloques}
-\par Como tomamos la determinación de aplicar el m\'etodo de Splines de a bloques de frames, queremos medir cuanto nos afecta el tama\~no que decidamos darle a estos bloques en el tiempo de ejecuci\'on del m\'etodo.
+\par Como tomamos la determinación de aplicar el m\'etodo de Splines de a bloques de frames, queremos medir cu\'anto nos afecta el tama\~no que decidamos darle a estos bloques en el tiempo de ejecuci\'on del m\'etodo.
 
-\par Para esto vamos a tomar un video con 20480 frames, y vamos a comenzar a aumentar el tama\~no de los bloques hasta llegar a un solo bloque que abarque todos el video.
-
+\par Para esto vamos a tomar los videos antes mencionados, y correremos el m\'etodo de splines con diferentes tama\~nos de bloque. Mantendremos la cantidad de frames intermedios fija (2) Con esto observaremos el comportamiento del m\'etodo y podremos determinar cu\'anto nos afectar\'a el tama\~no de bloques en el rendimiento.
 
 \subsubsubsection{Resultados del experimento 3}
 \begin{figure}[ht]
 	\begin{center}
-		\subfigure [Tiempos de ejecuci\'on variando el tamaño de los bloques] {\includegraphics[width=0.9\columnwidth]{imagenes/tiempos/graf3.png}}
+		\subfigure [Tiempos de ejecuci\'on variando el tamaño de los bloques] {\includegraphics[width=1\columnwidth]{imagenes/tiempos/exp3_gabriel.png}}
 	\end{center}
 \end{figure}
 \par Podemos observar que a pesar de algunas diferencias el orden del tiempo se mantiene constante y no se vi\'o afectado por el aumento del tama\~no de bloques. Nos parece normal que esto ocurra, ya que el algoritmo realiza la misma cantidad de pasos. La diferencia se ve en como se agrupan los datos, lo que si puede influir en las im\'agenes decididas a agregar como nuevos frames.
@@ -76,11 +75,6 @@ De aquí en adelante realizaremos experimentos sobre 6 videos reales, con distin
 	\end{center}
 \end{figure}
 
-\par Al ver los resultados lo primero que notamos en un \'orden similar y lineal entre los videos Cupcake, Tenis, Perro, Morocho, mientras que los videos Bebes y Fideos 
+\par Al ver los resultados lo primero que notamos en un \'orden similar y lineal entre los videos Cupcake, Tenis, Perro, Morocho. Los videos Bebes y Fideos mantienen ordenes mayores. Esto se lo adjudicamos al hecho de que son los videos con mayor resoluci\'on, y se ven mas afectados al agregar frames. Igualmente mantienen un orden lineal dentro de lo esperado.
 
-
-\par Tras realizar el experimento notamos que el aumento de la cantidad de frames intermedios se relaciona de forma lineal con el tiempo de ejecuci\'on. Analicemos un poco mas la situaci\'on:
-
-\par Podemos ver en el gr\'afico el comportamiento de los m\'etodos cuando se aumentan los frames intermedios. En todos los casos el \'orden es lineal, variando por su constante.
-
-\par Supangamos que tomamos N como la cantidad de frames del video original y F como cantidad de frames intermedios a agregar. De esta forma al aplicar alguno de los m\'etodos se agregan F frames N-1 veces $\longrightarrow$ F*(N-1). Si aplicamos uno de los m\'etodo nuevamente, pero esta vez con F+1 frames intermedios, se agregar\'an F+1 frames N-1 veces $\longrightarrow$ (F+1)*(N-1) = F*(N-1) + (N-1). Con este razonamiento simple y sin entrar en detalles podemos convencernos de que al aumentar la cantidad de frames aumentamos de forma lineal la cantidad de operaciones a realizar (agregamos N-1 operaciones `agregar frame intermedio').
+\par Veamos mas en detalle el efecto de agregar un frame. Supangamos que tomamos N como la cantidad de frames del video original y F como cantidad de frames intermedios a agregar. De esta forma al aplicar alguno de los m\'etodos se agregan F frames N-1 veces $\longrightarrow$ F*(N-1). Si aplicamos uno de los m\'etodo nuevamente, pero esta vez con F+1 frames intermedios, se agregar\'an F+1 frames N-1 veces $\longrightarrow$ (F+1)*(N-1) = F*(N-1) + (N-1). Con este razonamiento simple y sin entrar en detalles podemos convencernos de que al aumentar la cantidad de frames aumentamos de forma lineal la cantidad de operaciones a realizar (agregamos N-1 operaciones `agregar frame intermedio').
