@@ -49,8 +49,7 @@ De aquí en adelante realizaremos experimentos sobre 6 videos reales, con distin
 
 \subsubsection{Experimento 3: Tiempos de ejecucí\'on vs Tama\~no de Bloques}
 \par Como tomamos la determinación de aplicar el m\'etodo de Splines de a bloques de frames, queremos medir cu\'anto nos afecta el tama\~no que decidamos darle a estos bloques en el tiempo de ejecuci\'on del m\'etodo.
-
-\par Para esto vamos a tomar los videos antes mencionados, y correremos el m\'etodo de splines con diferentes tama\~nos de bloque. Mantendremos la cantidad de frames intermedios fija (2) Con esto observaremos el comportamiento del m\'etodo y podremos determinar cu\'anto nos afectar\'a el tama\~no de bloques en el rendimiento.
+\par Para esto vamos a tomar los videos antes mencionados, y correremos el m\'etodo de splines con diferentes tama\~nos de bloque. Mantendremos la cantidad de frames intermedios fija (2)y observaremos el comportamiento del m\'etodo.
 
 \subsubsubsection{Resultados del experimento 3}
 \begin{figure}[ht]
@@ -59,8 +58,48 @@ De aquí en adelante realizaremos experimentos sobre 6 videos reales, con distin
 	\end{center}
 \end{figure}
 \par Podemos observar que a pesar de algunas diferencias el orden del tiempo se mantiene constante y no se vi\'o afectado por el aumento del tama\~no de bloques. Nos parece normal que esto ocurra, ya que el algoritmo realiza la misma cantidad de pasos. La diferencia se ve en como se agrupan los datos, lo que si puede influir en las im\'agenes decididas a agregar como nuevos frames.
+\par Estos tests fueron corridos en una computadora \textbf{DATOS RELEVANTES COMO MEMORIA RAM, PROCESADOR}. Al correr estos mismos tests en otras computadoras vimos diferentes resultados que expondremos en el siguiente experimento.
 
+\subsubsubsection{Experimento 3 bis: Tiempos de ejecuci\'on vs Tama\~no de Bloques en computadoras con poca memoria}
+\par Al llevar a cabo el experimento 3 nos vimos con complicaciones para correr los tests en una computadora. Planteamos las limitaciones de la computadora y pensamos que podr\'ia ser lo que afecta las mediciones.
+\begin{itemize}
+	\item En primer lugar, es una computadora con Pentium D (dos procesadores de 2.66GHz y 1024KB de memoria cache), lo que aument\'o los tiempos de ejecuci\'on en gran medida.
+	\item En segundo lugar, cuenta con una memoria ram de 1.5 GB, por lo que creemos que al utilizar toda su memoria ram, pasar\'a a utilizar memoria mas lenta y eso puede influir fuertemente en los tiempos de ejecuci\'on.
+\end{itemize}
+\par Para abarcar el segundo item agregamos una medici\'on de memoria ram utilizada por el proceso. Vamos a ir consultando la memoria utilizada por el proceso y nos quedaremos con su valor m\'aximo, para as\'i tener una noci\'on de qu\'e puede estar pasando.
 
+\subsubsubsection{Resultados del experimento 3 bis}
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [Tiempos de ejecuci\'on enfocados en `cupcake', `morocho' y `tenis'] {\includegraphics[width=1\columnwidth]{imagenes/tiempos/exp3_tiempos_normales.png}}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\par En el caso de los tres videos con menor resoluci\'on (`cupcake', `morocho' y `tenis') obtenemos resultados del orden lineal, similares a los del experimento 3. Nombramos como dato importante la resoluci\'on ya que en memoria se guarda una matriz con los frames de un bloque (que su tama\~no va en aumento) y otras matrices y vectores que tambi\'en tienen al tama\~no de bloque entre sus medidas. Esta es la clave para entender el comportamiento de los otros dos videos (que mas adelante analizaremos).
+
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [Memoria utilizada enfocado en `cupcake', `morocho' y `tenis'] {\includegraphics[width=1\columnwidth]{imagenes/tiempos/exp3_memoria_normales.png}}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\par Con respecto a memoria utilizada, en los tres videos vemos un orden lineal en aumento, lo que es esperable por los detalles de la utilizaci\'on de memoria que comentamos anteriormente.
+
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [Tiempos de ejecuci\'on de todos los videos] {\includegraphics[width=1\columnwidth]{imagenes/tiempos/exp3_tiempos_todos.png}}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\par Por parte de los videos `bebes' y `fideos' (los de mayor resoluci\'on) notamos que aumentan de forma lineal, pero con un grado mayor al resto. Luego, el video `fideos' al llegar a 30 comienza a aumentar de forma cuadr\'atica. Lo mismo sucede para el video `bebes' al llegar a 40. Para entender por qu\'e sucede esto veamos el gr\'afico de los resultados de utilizaci\'on de memoria de estos dos videos.
+\begin{figure}[ht]
+	\begin{center}
+		\subfigure [Memoria utilizada por todos los videos] {\includegraphics[width=1\columnwidth]{imagenes/tiempos/exp3_memoria_todos.png}}
+	\end{center}
+\end{figure}
+\FloatBarrier
+\par Podemos observar que para el video `fideos' la memoria ram utilizada va en aumento hasta llegar a valores cercanos a 1.2 GB (recordemos que la memoria de la computadora era de 1.5 GB) y luego se estanca en esos valores. Si tenemos en cuenta otros procesos que puedan estar ejecut\'andose en ese momento y un sistema operativo que controla la memoria y puede limitar su asignaci\'on, entendemos que al no poder utilizar mas memoria ram recurre a otras memorias de menor velocidad. Esto explica los tiempos de ejecuci\'on obtenidos a partir del tama\~no de bloque 30. Esto mismo sucede a partir del bloque 40 en el caso del video `bebes'.
+\par Conclu\'imos que debemos tener en cuenta que el rendimiento del m\'etodo se ve fuertemente ligado a las caracter\'isticas de la computadora donde se corra. Igualmente para videos de calidad media y computadoras ligeramente modernas no observamos problemas.
 
 \subsubsection{Experimento 4: Tiempos de ejecucí\'on vs Cantidad de frames intermedios}
 \par Vamos a observar como se comportan los m\'etodos al variar la cantidad de frames que se desean agregar. A pesar de que no se hacen muchos pasos extra para agregar un frame intermedio y solo se realiza una ecuaci\'on, esta ecuaci\'on se repite para cada pixel del nuevo frame. Creemos que esto va a afectar mucho en el tiempo de ejecuci\'on de los tres m\'etodos.
@@ -74,6 +113,7 @@ De aquí en adelante realizaremos experimentos sobre 6 videos reales, con distin
 		\subfigure [M\'etodo de Splines Por Bloques] {\includegraphics[width=0.49\columnwidth]{imagenes/tiempos/exp4_splines.png}}
 	\end{center}
 \end{figure}
+\FloatBarrier
 
 \par Al ver los resultados lo primero que notamos en un \'orden similar y lineal entre los videos Cupcake, Tenis, Perro, Morocho. Los videos Bebes y Fideos mantienen ordenes mayores. Esto se lo adjudicamos al hecho de que son los videos con mayor resoluci\'on, y se ven mas afectados al agregar frames. Igualmente mantienen un orden lineal dentro de lo esperado.
 
