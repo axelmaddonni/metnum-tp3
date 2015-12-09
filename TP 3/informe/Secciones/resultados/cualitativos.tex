@@ -194,7 +194,7 @@ Los frames intermedios entre $f_2\ y f_3$ (denomin\'emoslos $f_{2-3}$) son los d
 Sin embargo, los frames $f_{1-2}$ (utilizando la nomenclatura reci\'en detallada) pertenecen a una s\'ola escena ($S_1$), y por lo tanto esperamos que otras escenas ($S_2$, en este caso) no alteren los frames interpolados.
 Si esto sucede, se producen artifacts donde pedazos de im\'agenes de otras escenas aparecen y desaparecen a pesar de que no tengan relaci\'on con el resto de la imagen.
 Un ejemplo de esto se puede ver en la figura \ref{BebesSplinesArtifact}\footnote{En caso de que no se vea a primera vista el artifact, prestar particular atenci\'on a la frente y nariz del beb\'e, donde se puede observar una figura en negativo}.
-Utilizando la notaci\'on previamente detallada, $S_1$ ser\'ia el beb\'e sentado (en la figura \ref{BebeSplinesS1} se ve un frame de esta escena), $S_2$ el zoom a la cara del beb\'e (en la figura \ref{BebeSplinesS2} se ve un frame de esta escena) y la imagen del artifact es uno de los frames $f_{3-4}$.
+Utilizando la notaci\'on previamente detallada, $S_1$ ser\'ia el beb\'e sentado (en la figura \ref{BSE} se ve un frame de esta escena), $S_2$ el zoom a la cara del beb\'e (en la figura \ref{BSE} se ve un frame de esta escena) y la imagen del artifact es uno de los frames $f_{3-4}$.
 Al incrementar el tama\~no de bloque, incrementa la posibilidad de incurrir en este artifact, ya que se aumenta la cantidad de frames de una escena que son afectados por otra.
 
 \FloatBarrier
@@ -208,11 +208,12 @@ Al incrementar el tama\~no de bloque, incrementa la posibilidad de incurrir en e
 
 \begin{figure}
 \hfill
-\subfigure[Escena 1]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/BSS2.png}}
+\subfigure[Escena 1]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/BSS1.png}}
 \hfill
-\subfigure[Escena 2]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/BSS1.png}}
+\subfigure[Escena 2]{\includegraphics[width=.4\linewidth]{imagenes/cualitativos/BSS2.png}}
 \hfill
 \caption{Escenas de Bebes con 6 frames intermedios, tama\~no de bloque 50}
+\label{BSE}
 \end{figure}
 \FloatBarrier
 
